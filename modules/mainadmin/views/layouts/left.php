@@ -32,6 +32,7 @@
                 'items' => [
                     ['label' => 'Меню администратора', 'options' => ['class' => 'header']],
                     ['label' => 'Статьи', 'icon' => 'clone', 'url' => ['/mainadmin/article']],
+                    ['label' => 'Слайдеры', 'icon' => 'camera', 'url' => ['/mainadmin/slider']],
                     /*['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                     [

@@ -21,7 +21,11 @@
         "dmstr/yii2-adminlte-asset": "^2.1",
         "bower-asset/font-awesome": "^4.7",
         "mihaildev/yii2-ckeditor": "*",
-        "mihaildev/yii2-elfinder": "*"
+        "mihaildev/yii2-elfinder": "*",
+        "la-haute-societe/yii2-save-relations-behavior": "*",
+        "yii-dream-team/yii2-upload-behavior": "*",
+        "elisdn/yii2-composite-form": "^1.0",
+        "kartik-v/yii2-widget-fileinput": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
