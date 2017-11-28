@@ -37,8 +37,8 @@ LtAppAsset::register($this);
             <div class="right-phone col-sm-2 text-center">
                 <i class="fa fa-phone"></i> &nbsp; +7 863 22 15 082
             </div>
-            <div class="backcall col-sm-2 col-sm-offset-1">
-                <?= Html::a('Обратная связь', ['']) ?>
+            <div class="measure col-sm-3">
+                <?= Html::a('Вызвать замерщика', [''], ['class' => 'measureCall']) ?>
             </div>
         </div>
     </div><!--top-string-->
@@ -49,28 +49,19 @@ LtAppAsset::register($this);
                     <?= Html::a(Html::img(Yii::getAlias('@web/files/default/logo.png'), ['alt' => 'На главную', 'class' => 'img-responsive']), Url::home()) ?>
                 </div>
             </div>
-            <div class="header-banner col-sm-3 col-sm-offset-1 text-center">
+            <div class="header-banner col-sm-4 text-center">
                 Производство и продажа
                 красивых и качественных
-                межкомнатных дверей
+                входных и межкомнатных дверей
             </div>
             <div class="header-right col-sm-3 col-sm-offset-1">
                 <div class="text-center">
                     <?= Html::img(Yii::getAlias('@web/files/default/clock.png'), ['alt' => 'Image', 'class' => 'xs-hidden']) ?>
                     Пн-пт 09:00 - 18:00 <br>
-                    Суббота 10:00 - 14:00
+                    Сб-вс 10:00 - 14:00
                 </div>
                 <div>
-                    <form role="search">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Поиск ...">
-                            <span class="input-group-btn">
-    	    <button class="btn btn-default" type="button">
-	      	  <i class="glyphicon glyphicon-search"></i>
-    	    </button>
-	      </span>
-                        </div>
-                    </form>
+                    <?= Html::a('Обратная связь', [''], ['backCall']) ?>
                 </div>
             </div>
         </div>

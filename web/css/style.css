@@ -35,7 +35,7 @@ body {
   .top-string .right-phone {
     padding-top: 7px;
     padding-bottom: 7px; }
-  .top-string .backcall a {
+  .top-string .measure a {
     display: block;
     width: 100%;
     background-color: #2850a0;
@@ -48,8 +48,7 @@ body {
 /* HEADER */
 .header {
   background-color: #eef2fa;
-  padding-top: 15px;
-  padding-bottom: 15px; }
+  padding-top: 15px; }
   .header .logo div {
     padding-left: 15px;
     padding-right: 15px; }
@@ -65,9 +64,15 @@ body {
       display: block;
       float: left;
       margin: 5px 0 5px 14px; }
-  .header .header-right div:last-child {
-    padding-left: 7px;
-    padding-right: 7px; }
+  .header .header-right div:last-child a {
+    display: block;
+    width: 100%;
+    background-color: #2850a0;
+    color: #ffffff;
+    text-align: center;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    font-weight: bold; }
 
 /* TOP-MENU */
 .top-menu .navbar.navbar-default {
@@ -125,9 +130,15 @@ body {
     height: 25px; }
 
   .top-menu .navbar.navbar-default .collapse.navbar-collapse .nav.nav-justified li a {
-    font-size: 16px; } }
+    font-size: 16px; }
+
+  .top-string {
+    font-size: 10px; } }
 @media screen and (max-width: 768px) {
   .footer-contact {
-    text-align: center; } }
+    text-align: center; }
+
+  .top-string {
+    font-size: 14px; } }
 
 /*# sourceMappingURL=style.css.map */

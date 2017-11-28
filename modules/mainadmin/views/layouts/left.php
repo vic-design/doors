@@ -33,6 +33,8 @@
                     ['label' => 'Меню администратора', 'options' => ['class' => 'header']],
                     ['label' => 'Статьи', 'icon' => 'clone', 'url' => ['/mainadmin/article']],
                     ['label' => 'Слайдеры', 'icon' => 'camera', 'url' => ['/mainadmin/slider']],
+                    ['label' => 'Сообщения', 'icon' => 'envelope', 'url' => ['/mainadmin/message']],
+                    ['label' => 'Заказы звонка', 'icon' => 'phone', 'url' => ['/mainadmin/call']],
                     /*['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                     [
