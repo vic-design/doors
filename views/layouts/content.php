@@ -12,7 +12,7 @@ use yii\helpers\Url;
     <div class="sidebar-left col-sm-3">
         <div class="sidebar-menu">
             <ul class="nav nav-pills nav-stacked">
-                <li role="presentation"><a href="#">Новости и акции</a></li>
+                <li role="presentation"><a href="<?= Url::to(['/stock/page']) ?>">Новости и акции</a></li>
                 <li role="presentation"><a href="#">Оптовикам</a></li>
                 <li role="presentation"><a href="#">Документация</a></li>
                 <li role="presentation"><a href="#">Прайс-листы</a></li>
