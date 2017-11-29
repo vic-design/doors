@@ -84,6 +84,10 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'mainadmin' => 'mainadmin/default/index',
+                'novosti-i-akcii' => 'stock/page',
+                '<slug:[\w\-_]+>' => 'article/node',
+                'novosti-i-akcii/<slug:[\w\-_]+>' => 'stock/node'
             ],
         ],
 

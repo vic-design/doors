@@ -3,7 +3,6 @@
 namespace app\fond\entities\manage;
 
 
-use phpDocumentor\Reflection\Types\Self_;
 use yii\db\ActiveRecord;
 
 /**
@@ -25,6 +24,8 @@ class Call extends ActiveRecord
         $call->phone = $phone;
         $call->status = self::STATUS_DRAFT;
         $call->created_at = time();
+
+        return $call;
     }
 
     public function isDraft()

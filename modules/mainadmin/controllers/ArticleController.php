@@ -130,7 +130,7 @@ class ArticleController extends Controller
      *
      * @return \yii\web\Response
      */
-    public function draft($id)
+    public function actionDraft($id)
     {
         try{
             $this->service->draft($id);
@@ -146,7 +146,7 @@ class ArticleController extends Controller
      *
      * @return \yii\web\Response
      */
-    public function activate($id)
+    public function actionActivate($id)
     {
         try{
             $this->service->activate($id);

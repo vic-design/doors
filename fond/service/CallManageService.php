@@ -23,7 +23,7 @@ class CallManageService
         );
         $this->calls->save($call);
 
-        $subject = $form->name.' просит перезвонить ему.';
+        $subject = $form->name.' хочет вызвать замерщика.';
         $body = '<p>Подробности: <br>';
         $body .= 'ФИО: '.$form->name.'<br>';
         $body .= 'Телефон: '.$form->phone.'</p>';

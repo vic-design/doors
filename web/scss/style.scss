@@ -111,6 +111,7 @@ body{
 
 /* TOP-MENU */
 .top-menu{
+    margin-bottom: -5px;
     .navbar.navbar-default{
         background-color: transparent;
         border: none;
@@ -137,6 +138,134 @@ body{
 
 
 /* CONTENT */
+.main-content{
+    background-color: #fff;
+}
+.slider{
+    .carousel.fade{
+        opacity: 1;
+    }
+    .carousel.fade .item{
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        opacity: 0;
+        transition: opacity .99s;
+    }
+    .carousel.fade .item.active{
+        position: relative;
+        opacity: 1;
+    }
+}
+.down-menu{
+    .navbar.navbar-default{
+        background-color: transparent;
+        border: none;
+        border-radius: 0;
+        min-height: 42px;
+        .collapse.navbar-collapse{
+            padding-left: 0;
+            padding-right: 0;
+            .nav.nav-justified{
+                li{
+                    a{
+                        background-color: $rose;
+                        color: #ffffff;
+                        font-weight: bold;
+                        font-size: 16px;
+                        border: none;
+                        border-radius: 0;
+                        &:hover, &.active, &:focus{
+                            background-color: $hardGrey;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.stocks-block{
+    .row{
+        margin-left: 15px;
+        margin-right: 15px;
+        .col-sm-4{
+            h2{
+                font-size: 24px;
+                font-weight: bold;
+                color: $hardGrey;
+            }
+            a{
+                font-size: 18px;
+                color: $rose;
+                display: block;
+                margin-top: 25px;
+            }
+        }
+        .col-sm-3{
+            margin-bottom: 15px;
+            a{
+                color: $rose;
+                h4{
+                    font-size: 20px;
+                    min-height: 40px;
+                    margin-bottom: 10px;
+                }
+            }
+            .start{
+                color: $lightGrey;
+            }
+            .stock-summary{
+                height: 150px;
+                overflow-y: auto;
+                margin-bottom: 10px;
+            }
+        }
+    }
+}
+.doors-image{
+    margin-bottom: 25px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+.company{
+    margin-bottom: 25px;
+    margin-left: 15px;
+    margin-right: 15px;
+    h2{
+        font-size: 24px;
+        font-weight: bold;
+        color: $hardGrey;
+    }
+    p{
+        a{
+            font-size: 16px;
+            color: $rose;
+            font-weight: bold;
+        }
+    }
+}
+.article-index, .stock-page{
+    margin-bottom: 35px;
+    padding-right: 15px;
+}
+.sidebar-menu{
+    margin-top: 25px;
+    .nav.nav-pills{
+        li{
+            a{
+                background-color: $blue;
+                color: #ffffff;
+                font-size: 16px;
+                font-weight: bold;
+                &:hover, &:focus, &.active{
+                    background-color: $rose;
+                }
+            }
+        }
+    }
+}
 
 
 /* FOOTER */
@@ -197,7 +326,9 @@ body{
     .top-string{
         font-size: 10px;
     }
-
+    .down-menu .navbar.navbar-default .collapse.navbar-collapse .nav.nav-justified li a{
+        font-size: 14px;
+    }
 }
 
 @media screen and (max-width: 768px){
@@ -206,5 +337,8 @@ body{
     }
     .top-string{
         font-size: 14px;
+    }
+    .down-menu .navbar.navbar-default .collapse.navbar-collapse .nav.nav-justified li a{
+        font-size: 16px;
     }
 }

@@ -8,7 +8,7 @@ use yii\helpers\Html;
 
 $this->title = 'Редактирование акции: ' . $stock->name;
 $this->params['breadcrumbs'][] = ['label' => 'Акции и новости', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $$stock->name, 'url' => ['view', 'id' => $stock->id]];
+$this->params['breadcrumbs'][] = ['label' => $stock->name, 'url' => ['view', 'id' => $stock->id]];
 $this->params['breadcrumbs'][] = 'Редактирование';
 ?>
 <div class="stock-update">

@@ -7,6 +7,7 @@ use yii\helpers\Url;
 use app\assets\AppAsset;
 use app\assets\LtAppAsset;
 use app\widgets\Alert;
+use yii\bootstrap\Modal;
 
 AppAsset::register($this);
 LtAppAsset::register($this);
@@ -38,7 +39,7 @@ LtAppAsset::register($this);
                 <i class="fa fa-phone"></i> &nbsp; +7 863 22 15 082
             </div>
             <div class="measure col-sm-3">
-                <?= Html::a('Вызвать замерщика', [''], ['class' => 'measureCall']) ?>
+                <?= Html::a('Вызвать замерщика', ['/call/node'], ['class' => 'measureCall']) ?>
             </div>
         </div>
     </div><!--top-string-->
@@ -61,7 +62,7 @@ LtAppAsset::register($this);
                     Сб-вс 10:00 - 14:00
                 </div>
                 <div>
-                    <?= Html::a('Обратная связь', [''], ['backCall']) ?>
+                    <?= Html::a('Обратная связь', ['/message/node'], ['class' => 'backCall']) ?>
                 </div>
             </div>
         </div>
@@ -78,12 +79,10 @@ LtAppAsset::register($this);
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav nav-justified">
-                        <li><a href="#">Главная</a></li>
-                        <li><a href="#">О компании</a></li>
+                        <li><a href="<?= Url::home() ?>">Главная</a></li>
+                        <li><a href="<?= Url::to(['/article/node', 'slug' => 'o-kompanii']) ?>">О компании</a></li>
                         <li><a href="#">Каталог</a></li>
-                        <li><a href="#">Акции</a></li>
-                        <li><a href="#">Оптовикам</a></li>
-                        <li><a href="#">Контакты</a></li>
+                        <li><a href="<?= Url::to(['/article/node', 'slug' => 'kontakty']) ?>">Контакты</a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
         </nav>
@@ -118,6 +117,30 @@ LtAppAsset::register($this);
         </p>
     </div>
 </div><!--footer-->
+
+<?php
+Modal::begin([
+        'id' => 'msgModal',
+        'headerOptions' => ['id' => 'modal-header'],
+        'header' => '<h4>Обратная связь</h4>',
+        'size' => 'modal-lg',
+        'clientOptions' => false
+])
+?>
+<div id="modal-content"></div>
+<?php Modal::end() ?>
+
+<?php
+Modal::begin([
+        'id' => 'callModal',
+        'headerOptions' => ['id' => 'modal-header'],
+        'header' => '<h4>Вызвать замерщика</h4>',
+        'size' => 'modal-sm',
+        'clientOptions' => false
+])
+?>
+<div id="modal-content"></div>
+<?php Modal::end() ?>
 
 <?php $this->endBody() ?>
 </body>

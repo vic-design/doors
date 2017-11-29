@@ -35,14 +35,14 @@ $this->params['breadcrumbs'][] = $this->title;
                         },
                         'format' => 'html',
                     ],
-                    'start_day',
                     [
                         'attribute' => 'status',
                         'filter' => StockHelper::statusList(),
                         'value' => function(Stock $stock)
                         {
                             return StockHelper::statusLabel($stock->status);
-                        }
+                        },
+                        'format' => 'html',
                     ],
 
                     ['class' => 'yii\grid\ActionColumn'],

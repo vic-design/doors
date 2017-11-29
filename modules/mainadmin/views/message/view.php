@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?php if ($message->isDraft()): ?>
-        <?= Html::a('Отметить как прочитанное', ['activate', 'id' => $message->id], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Отметить как прочитанное', ['activate', 'id' => $message->id], ['class' => 'btn btn-success', 'data-method' => 'post']) ?>
         <?php else: ?>
         <?= Html::tag('button', 'Прочитано', ['class' => 'btn btn-default']) ?>
         <?php endif; ?>

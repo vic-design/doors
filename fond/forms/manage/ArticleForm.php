@@ -4,7 +4,7 @@ namespace app\fond\forms\manage;
 
 
 use app\fond\validators\SlugValidator;
-use app\fonds\entities\manage\Article;
+use app\fond\entities\manage\Article;
 use yii\base\Model;
 
 class ArticleForm extends Model

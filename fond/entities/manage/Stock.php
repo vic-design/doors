@@ -77,6 +77,7 @@ class Stock extends ActiveRecord
         if ($this->isActive()){
             throw new \DomainException('Акция уже опубликована.');
         }
+        $this->status = self::STATUS_ACTIVE;
     }
 
     public function attributeLabels() {
