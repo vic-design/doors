@@ -35,6 +35,7 @@
                     ['label' => 'Слайдеры', 'icon' => 'camera', 'url' => ['/mainadmin/slider']],
                     ['label' => 'Сообщения', 'icon' => 'envelope', 'url' => ['/mainadmin/message']],
                     ['label' => 'Заказы звонка', 'icon' => 'phone', 'url' => ['/mainadmin/call']],
+                    ['label' => 'Акции и новости', 'icon' => 'money', 'url' => ['/mainadmin/stock']],
                     /*['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                     [

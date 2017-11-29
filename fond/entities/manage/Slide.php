@@ -55,7 +55,7 @@ class Slide extends ActiveRecord
                 'thumbUrl' => '@web/files/sliders/cache/[[attribute_slider_id]]/[[profile]]/[[id]].[[extension]]',
                 'thumbs' => [
                     'main' => ['width' => 330, 'height' => 100],
-                    'front' => ['width' => 850, 'height' => 260],
+                    'front' => ['width' => 1170, 'height' => 351],
                 ],
             ],
         ];
