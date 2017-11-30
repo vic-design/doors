@@ -66,7 +66,7 @@ $config = [
                 'encryption' => 'ssl',
             ],
             'messageConfig' => [
-                    'from' => ['info@abutan.tmweb.ru' => 'Мебель своими руками'],
+                    'from' => ['info@abutan.tmweb.ru' => 'РД Трейдинг'],
             ],
         ],
         'log' => [
