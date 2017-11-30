@@ -173,7 +173,7 @@ body {
     color: #e5004f;
     font-weight: bold; }
 
-.article-index, .stock-page {
+.article-index, .stock-page, .stock-node {
   margin-bottom: 35px;
   padding-right: 15px; }
 

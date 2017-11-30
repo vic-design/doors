@@ -20,6 +20,7 @@ class StockController extends Controller
 
     public function actionNode($slug)
     {
+        $this->layout = 'content';
         $stock = Stock::find()->andWhere(['status' => 1])->andWhere(['slug' => $slug])->one();
 
         return $this->render('node', [
