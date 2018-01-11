@@ -20,14 +20,14 @@ class ArticleRepository
     public function save(Article $article)
     {
         if (!$article->save()){
-            throw new \DomainException('Ошибка сохранения.');
+            throw new \RuntimeException('Ошибка сохранения.');
         }
     }
 
     public function remove(Article $article)
     {
         if (!$article->delete()){
-            throw new \DomainException('Ошибка удаления.');
+            throw new \RuntimeException('Ошибка удаления.');
         }
     }
 }

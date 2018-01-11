@@ -4,38 +4,32 @@
 
         <!-- Sidebar user panel -->
         <div class="user-panel">
-            <div class="pull-left image">
-                <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
+            <div class="pull-left image" style="height: 50px;">
+
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
+                <p><?= Yii::$app->user->identity['username'] ?></p>
 
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
-
-        <!-- search form -->
-        <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="Search..."/>
-              <span class="input-group-btn">
-                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-            </div>
-        </form>
-        <!-- /.search form -->
 
         <?= dmstr\widgets\Menu::widget(
             [
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
                     ['label' => 'Меню администратора', 'options' => ['class' => 'header']],
-                    ['label' => 'Статьи', 'icon' => 'clone', 'url' => ['/mainadmin/article']],
-                    ['label' => 'Слайдеры', 'icon' => 'camera', 'url' => ['/mainadmin/slider']],
-                    ['label' => 'Сообщения', 'icon' => 'envelope', 'url' => ['/mainadmin/message']],
-                    ['label' => 'Заказы звонка', 'icon' => 'phone', 'url' => ['/mainadmin/call']],
-                    ['label' => 'Акции и новости', 'icon' => 'money', 'url' => ['/mainadmin/stock']],
+                    ['label' => 'Сайт', 'icon' => 'folder', 'items' => [
+                        ['label' => 'Статьи', 'icon' => 'clone', 'url' => ['/mainadmin/article']],
+                        ['label' => 'Слайдеры', 'icon' => 'camera', 'url' => ['/mainadmin/slider']],
+                        ['label' => 'Сообщения', 'icon' => 'envelope', 'url' => ['/mainadmin/message']],
+                        ['label' => 'Заказы звонка', 'icon' => 'phone', 'url' => ['/mainadmin/call']],
+                        ['label' => 'Акции и новости', 'icon' => 'money', 'url' => ['/mainadmin/stock']],
+                    ]],
+                    ['label' => 'Магазин', 'icon' => 'shopping-bag', 'items' => [
+                        ['label' => 'Категории', 'icon' => 'list-alt', 'url' => ['/mainadmin/shop/category/index'], 'active' => Yii::$app->controller->id == 'shop/category'],
+                        ['label' => 'Товары', 'icon' => 'bank', 'url' => ['/mainadmin/shop/product/index'], 'active' => Yii::$app->controller->id == 'shop/product'],
+                    ]],
                     /*['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                     [

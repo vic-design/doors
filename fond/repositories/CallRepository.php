@@ -19,14 +19,14 @@ class CallRepository
     public function save(Call $call)
     {
         if (!$call->save()){
-            throw new \DomainException('Ошибка сохранения.');
+            throw new \RuntimeException('Ошибка сохранения.');
         }
     }
 
     public function remove(Call $call)
     {
         if (!$call->delete()){
-            throw new \DomainException('Ошибка удаления.');
+            throw new \RuntimeException('Ошибка удаления.');
         }
     }
 }

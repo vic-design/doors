@@ -3,7 +3,6 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use mihaildev\ckeditor\CKEditor;
-use mihaildev\elfinder\ElFinder;
 
 /* @var $this yii\web\View */
 /* @var $model app\fond\entities\manage\Article */
@@ -18,9 +17,7 @@ use mihaildev\elfinder\ElFinder;
         <div class="box-header with-border">Статья</div>
         <div class="box-body">
             <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-            <?= $form->field($model, 'body')->widget(CKEditor::className(), [
-                    'editorOptions' => ElFinder::ckeditorOptions('elfinder',[]),
-            ]); ?>
+            <?= $form->field($model, 'body')->widget(CKEditor::className()); ?>
             <?= $form->field($model, 'slug')->textInput(['maxlength' => true])->hint('Это поле не надо заполнять. От Вас требуется только устранить замечания при их возникновении.') ?>
         </div>
     </div>

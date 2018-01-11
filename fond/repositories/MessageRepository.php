@@ -18,14 +18,14 @@ class MessageRepository
 
     public function save(Message $message){
         if (!$message->save()){
-            throw new \DomainException('Ошибка сохранения.');
+            throw new \RuntimeException('Ошибка сохранения.');
         }
     }
 
     public function remove(Message $message)
     {
         if (!$message->delete()){
-            throw new \DomainException('Ошибка удаления.');
+            throw new \RuntimeException('Ошибка удаления.');
         }
     }
 }

@@ -26,7 +26,8 @@
         "yii-dream-team/yii2-upload-behavior": "*",
         "elisdn/yii2-composite-form": "^1.0",
         "kartik-v/yii2-widget-fileinput": "@dev",
-        "kartik-v/yii2-widget-datetimepicker": "*"
+        "kartik-v/yii2-widget-datetimepicker": "*",
+        "paulzi/yii2-nested-sets": "^1.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

@@ -19,14 +19,14 @@ class SliderRepository
     public function save(Slider $slider)
     {
         if (!$slider->save()){
-            throw new \DomainException('Ошибка сохранения');
+            throw new \RuntimeException('Ошибка сохранения');
         }
     }
 
     public function remove(Slider $slider)
     {
         if (!$slider->delete()){
-            throw new \DomainException('Ошибка удаления');
+            throw new \RuntimeException('Ошибка удаления');
         }
     }
 }

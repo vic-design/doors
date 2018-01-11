@@ -33,12 +33,8 @@ use kartik\datetime\DateTimePicker;
                     'todayBtn' => true,
                 ]
             ]) ?>
-            <?= $form->field($model, 'summary')->widget(CKEditor::className(), [
-                    'editorOptions' => ElFinder::ckeditorOptions('elfinder',[]),
-            ]); ?>
-            <?= $form->field($model, 'body')->widget(CKEditor::className(), [
-                    'editorOptions' => ElFinder::ckeditorOptions('elfinder',[]),
-            ]); ?>
+            <?= $form->field($model, 'summary')->widget(CKEditor::className()); ?>
+            <?= $form->field($model, 'body')->widget(CKEditor::className()); ?>
             <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
         </div>
     </div>
