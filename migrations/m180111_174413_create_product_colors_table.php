@@ -12,9 +12,13 @@ class m180111_174413_create_product_colors_table extends Migration
      */
     public function up()
     {
-        $this->createTable('product_colors', [
+        $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+
+        $this->createTable('{{%product_colors}}', [
             'id' => $this->primaryKey(),
-        ]);
+            'name' => $this->string()->notNull(),
+            'image' => $this->string(),
+        ], $tableOptions);
     }
 
     /**
@@ -22,6 +26,6 @@ class m180111_174413_create_product_colors_table extends Migration
      */
     public function down()
     {
-        $this->dropTable('product_colors');
+        $this->dropTable('{{%product_colors}}');
     }
 }

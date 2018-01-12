@@ -12,7 +12,7 @@ class m180107_093912_create_shop_product_photos_table extends Migration
      */
     public function up()
     {
-        $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci';
+        $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
 
         $this->createTable('{{%shop_product_photos}}', [
             'id' => $this->primaryKey(),
