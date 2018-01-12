@@ -29,6 +29,7 @@
                     ['label' => 'Магазин', 'icon' => 'shopping-bag', 'items' => [
                         ['label' => 'Категории', 'icon' => 'list-alt', 'url' => ['/mainadmin/shop/category/index'], 'active' => Yii::$app->controller->id == 'shop/category'],
                         ['label' => 'Цвета', 'icon' => 'paint-brush', 'url' => ['/mainadmin/shop/color/index'], 'active' => Yii::$app->controller->id == 'shop/color'],
+                        ['label' => 'Материалы', 'icon' => 'object-ungroup', 'url' => ['/mainadmin/shop/material/index'], 'active' => Yii::$app->controller->id == 'shop/material'],
                         ['label' => 'Товары', 'icon' => 'bank', 'url' => ['/mainadmin/shop/product/index'], 'active' => Yii::$app->controller->id == 'shop/product'],
                     ]],
                     /*['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
