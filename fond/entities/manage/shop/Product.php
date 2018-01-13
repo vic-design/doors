@@ -43,6 +43,8 @@ use yii\web\UploadedFile;
  * @property Color[] $colors
  * @property MaterialAssignment[] $materialAssignments
  * @property Material[] $materials
+ * @property SizeAssignment[] $sizeAssignments
+ * @property Size[] $sizes
  */
 class Product extends ActiveRecord
 {
@@ -317,6 +319,38 @@ class Product extends ActiveRecord
 
     #########
 
+    public function addSize($id): void
+    {
+        $assignments = $this->sizeAssignments;
+        foreach ($assignments as $assignment){
+            if ($assignment->isForSize($id)){
+                return;
+            }
+        }
+        $assignments[] = SizeAssignment::create($id);
+        $this->sizeAssignments = $assignments;
+    }
+
+    public function revokeSize($id): void
+    {
+        $assignments = $this->sizeAssignments;
+        foreach ($assignments as $i => $assignment){
+            if ($assignment->isForSize($id)){
+                unset($assignments[$i]);
+                $this->sizeAssignments = $assignments;
+                return;
+            }
+        }
+        throw new \DomainException('Что то не получилось.');
+    }
+
+    public function revokeSizes(): void
+    {
+        $this->sizeAssignments = [];
+    }
+
+    #########
+
     public function getCategory(): ActiveQuery
     {
         return $this->hasOne(Category::class, ['id' => 'category_id']);
@@ -362,6 +396,16 @@ class Product extends ActiveRecord
         return $this->hasMany(Material::className(), ['id' => 'material_id'])->via('materialAssignments');
     }
 
+    public function getSizeAssignments(): ActiveQuery
+    {
+        return $this->hasMany(SizeAssignment::className(), ['product_id' => 'id']);
+    }
+
+    public function getSizes(): ActiveQuery
+    {
+        return $this->hasMany(Size::className(), ['id' => 'size_id'])->via('sizeAssignments');
+    }
+
     #########
 
     public function behaviors()
@@ -374,6 +418,7 @@ class Product extends ActiveRecord
                     'photos',
                     'colorAssignments',
                     'materialAssignments',
+                    'sizeAssignments',
                 ],
             ],
         ];
