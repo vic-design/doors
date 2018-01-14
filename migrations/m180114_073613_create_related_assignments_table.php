@@ -3,16 +3,16 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `product_components`.
+ * Handles the creation of table `related_assignments`.
  */
-class m180113_082508_create_product_components_table extends Migration
+class m180114_073613_create_related_assignments_table extends Migration
 {
     /**
      * @inheritdoc
      */
     public function up()
     {
-        $this->createTable('product_components', [
+        $this->createTable('related_assignments', [
             'id' => $this->primaryKey(),
         ]);
     }
@@ -22,6 +22,6 @@ class m180113_082508_create_product_components_table extends Migration
      */
     public function down()
     {
-        $this->dropTable('product_components');
+        $this->dropTable('related_assignments');
     }
 }

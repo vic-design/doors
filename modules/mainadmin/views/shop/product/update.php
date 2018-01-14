@@ -47,7 +47,24 @@ $this->params['breadcrumbs'][] = 'Редактирование';
             </div>
         </div>
         <div class="col-sm-6">
-
+            <div class="box">
+                <div class="box-header with-border">Цвета</div>
+                <div class="box-body">
+                    <?= $form->field($model->colors, 'existing')->checkboxList($model->colors->colorList()) ?>
+                </div>
+            </div>
+            <div class="box">
+                <div class="box-header with-border">Материалы</div>
+                <div class="box-body">
+                    <?= $form->field($model->materials, 'existing')->checkboxList($model->materials->materialList()) ?>
+                </div>
+            </div>
+            <div class="box">
+                <div class="box-header with-border">Размеры</div>
+                <div class="box-body">
+                    <?= $form->field($model->sizes, 'existing')->checkboxList($model->sizes->sizeList()) ?>
+                </div>
+            </div>
         </div>
     </div>
 

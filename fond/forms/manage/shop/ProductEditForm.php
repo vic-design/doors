@@ -9,6 +9,9 @@ use elisdn\compositeForm\CompositeForm;
 
 /**
  * @property CategoriesForm $categories
+ * @property ColorsForm $colors
+ * @property MaterialsForm $materials
+ * @property SizesForm $sizes
  */
 class ProductEditForm extends CompositeForm
 {
@@ -33,6 +36,9 @@ class ProductEditForm extends CompositeForm
         $this->keywords = $product->keywords;
         $this->_product = $product;
         $this->categories = new CategoriesForm($product);
+        $this->colors = new ColorsForm($product);
+        $this->materials = new MaterialsForm($product);
+        $this->sizes = new SizesForm($product);
         parent::__construct($config);
     }
 
@@ -62,6 +68,8 @@ class ProductEditForm extends CompositeForm
 
     protected function internalForms()
     {
-        return ['categories',];
+        return [
+            'categories', 'colors', 'materials', 'sizes'
+        ];
     }
 }

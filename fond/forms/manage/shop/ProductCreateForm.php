@@ -13,6 +13,9 @@ use elisdn\compositeForm\CompositeForm;
  * @property FeaturesForm $features
  * @property PhotosForm $photos
  * @property CategoriesForm $categories
+ * @property ColorsForm $colors
+ * @property MaterialsForm $materials
+ * @property SizesForm $sizes
  */
 class ProductCreateForm extends CompositeForm
 {
@@ -31,6 +34,9 @@ class ProductCreateForm extends CompositeForm
         $this->thickness = new ThicknessForm();
         $this->features = new FeaturesForm();
         $this->photos = new PhotosForm();
+        $this->colors = new ColorsForm();
+        $this->materials = new MaterialsForm();
+        $this->sizes = new SizesForm();
         parent::__construct($config);
     }
 
@@ -61,7 +67,7 @@ class ProductCreateForm extends CompositeForm
     protected function internalForms()
     {
         return [
-            'price', 'thickness', 'features', 'photos', 'categories',
+            'price', 'thickness', 'features', 'photos', 'categories', 'colors', 'materials', 'sizes',
         ];
     }
 }

@@ -19,6 +19,7 @@ use yii\web\UploadedFile;
  * @property int $door_old_price [int(11)]
  * @property int $box_old_price [int(11)]
  * @property int $box_price [int(11)]
+ * @property int $old_price [int(11)]
  * @property int $price [int(11)]
  * @property string $slug [varchar(255)]
  * @property int $status [smallint(6)]
@@ -68,11 +69,12 @@ class Product extends ActiveRecord
         return $product;
     }
 
-    public function setPrice($doorOldPrice, $boxOldPrice, $boxPrice, $price)
+    public function setPrice($doorOldPrice, $boxOldPrice, $boxPrice, $oldPrice, $price)
     {
         $this->door_old_price = $doorOldPrice;
         $this->box_old_price = $boxOldPrice;
         $this->box_price = $boxPrice;
+        $this->old_price = $oldPrice;
         $this->price = $price;
     }
 

@@ -11,7 +11,10 @@ use app\fond\forms\manage\shop\ProductCreateForm;
 use app\fond\forms\manage\shop\ProductEditForm;
 use app\fond\forms\manage\shop\ThicknessForm;
 use app\fond\repositories\shop\CategoryRepository;
+use app\fond\repositories\shop\ColorRepository;
+use app\fond\repositories\shop\MaterialRepository;
 use app\fond\repositories\shop\ProductRepository;
+use app\fond\repositories\shop\SizeRepository;
 use app\fond\service\TransactionManager;
 use yii\helpers\Inflector;
 
@@ -20,12 +23,18 @@ class ProductManageService
     private $products;
     private $categories;
     private $transactions;
+    private $colors;
+    private $materials;
+    private $sizes;
 
-    public function __construct(ProductRepository $products, CategoryRepository $categories, TransactionManager $transactions)
+    public function __construct(ProductRepository $products, CategoryRepository $categories, ColorRepository $colors, MaterialRepository $materials, SizeRepository $sizes, TransactionManager $transactions)
     {
         $this->products = $products;
         $this->categories = $categories;
+        $this->colors = $colors;
+        $this->materials = $materials;
         $this->transactions = $transactions;
+        $this->sizes = $sizes;
     }
 
     /**
@@ -50,6 +59,7 @@ class ProductManageService
             $form->price->doorOldPrice,
             $form->price->boxOldPrice,
             $form->price->boxPrice,
+            $form->price->oldPrice,
             $form->price->price
         );
         $product->setThickness(
@@ -75,6 +85,28 @@ class ProductManageService
                 $product->addPhoto($file);
             }
         }
+
+        if ($form->colors->existing){
+            foreach ($form->colors->existing as $colorId){
+                $color = $this->colors->get($colorId);
+                $product->addColor($color->id);
+            }
+        }
+
+        if ($form->materials->existing){
+            foreach ($form->materials->existing as $materialId){
+                $material = $this->materials->get($materialId);
+                $product->addMaterial($material->id);
+            }
+        }
+
+        if ($form->sizes->existing){
+            foreach ($form->sizes->existing as $sizeId){
+                $size = $this->sizes->get($sizeId);
+                $product->addSize($size->id);
+            }
+        }
+
         $this->products->save($product);
 
         return $product;
@@ -104,12 +136,36 @@ class ProductManageService
         $product->changeMainCategory($category->id);
         $this->transactions->wrap(function () use ($product, $form){
            $product->removeCategories();
+           $product->revokeColors();
+           $product->revokeMaterials();
+           $product->revokeSizes();
            $this->products->save($product);
 
             if (!empty($form->categories->others)){
                 foreach ($form->categories->others as $otherId){
                     $category = $this->categories->get($otherId);
                     $product->assignCategory($category->id);
+                }
+            }
+
+            if ($form->colors->existing){
+                foreach ($form->colors->existing as $colorId){
+                    $color = $this->colors->get($colorId);
+                    $product->addColor($color->id);
+                }
+            }
+
+            if ($form->materials->existing){
+                foreach ($form->materials->existing as $materialId){
+                    $material = $this->materials->get($materialId);
+                    $product->addMaterial($material->id);
+                }
+            }
+
+            if ($form->sizes->existing){
+                foreach ($form->sizes->existing as $sizeId){
+                    $size = $this->sizes->get($sizeId);
+                    $product->addSize($size->id);
                 }
             }
             $this->products->save($product);
@@ -130,6 +186,7 @@ class ProductManageService
             $form->doorOldPrice,
             $form->boxOldPrice,
             $form->boxPrice,
+            $form->oldPrice,
             $form->price
         );
         $this->products->save($product);

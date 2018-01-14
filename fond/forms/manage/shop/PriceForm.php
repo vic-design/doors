@@ -11,6 +11,7 @@ class PriceForm extends Model
     public $doorOldPrice;
     public $boxOldPrice;
     public $boxPrice;
+    public $oldPrice;
     public $price;
 
     public function __construct(Product $product = null, array $config = [])
@@ -19,6 +20,7 @@ class PriceForm extends Model
             $this->doorOldPrice = $product->door_old_price;
             $this->boxOldPrice = $product->box_old_price;
             $this->boxPrice = $product->box_price;
+            $this->oldPrice = $product->old_price;
             $this->price = $product->price;
         }
         parent::__construct($config);
@@ -28,7 +30,7 @@ class PriceForm extends Model
     {
         return [
             ['price', 'required'],
-            [['price', 'boxPrice', 'boxOldPrice', 'doorOldPrice'], 'integer', 'min' => 0],
+            [['price', 'boxPrice', 'boxOldPrice', 'doorOldPrice', 'oldPrice'], 'integer', 'min' => 0],
         ];
     }
 
@@ -38,6 +40,7 @@ class PriceForm extends Model
             'doorOldPrice' => 'Старая цена на полотно',
             'boxOldPrice' => 'Старая цена за комплект',
             'boxPrice' => 'Цена за комплект',
+            'oldPrice' => 'Старая цена',
             'price' => 'Цена товара',
         ];
     }

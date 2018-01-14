@@ -56,6 +56,18 @@ $this->params['breadcrumbs'][] = $this->title;
                         'label' => 'Дополнительные категории',
                         'value' => implode(', ', ArrayHelper::getValue($product->categories, 'name'))
                     ],
+                    [
+                        'label' => 'Цвета',
+                        'value' => implode(', ', ArrayHelper::getValue($product->colors, 'name')),
+                    ],
+                    [
+                        'label' => 'Материалы',
+                        'value' => implode(', ', ArrayHelper::getValue($product->materials, 'name')),
+                    ],
+                    [
+                        'label' => 'Размеры',
+                        'value' => implode(', ', ArrayHelper::getValue($product->sizes, 'name')),
+                    ],
                     'created_at:datetime',
                     'updated_at:datetime',
                 ],
@@ -80,6 +92,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'box_price',
                         'value' => PriceHelper::format($product->box_price) . '<i class="fa fa-rub" aria-hidden="true"></i>',
+                    ],
+                    [
+                        'attribute' => 'old_price',
+                        'value' => PriceHelper::format($product->old_price) . '<i class="fa fa-rub" aria-hidden="true"></i>',
                     ],
                     [
                         'attribute' => 'price',

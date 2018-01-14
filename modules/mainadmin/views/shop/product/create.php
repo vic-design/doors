@@ -57,6 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= $form->field($model->price, 'doorOldPrice')->textInput(['maxlength' => true]) ?>
                     <?= $form->field($model->price, 'boxOldPrice')->textInput(['maxlength' => true]) ?>
                     <?= $form->field($model->price, 'boxPrice')->textInput(['maxlength' => true]) ?>
+                    <?= $form->field($model->price, 'oldPrice')->textInput(['maxlength' => true]) ?>
                     <?= $form->field($model->price, 'price')->textInput(['maxlength' => true]) ?>
                 </div>
             </div>
@@ -76,6 +77,24 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= $form->field($model->features, 'outFacing')->textInput(['maxlength' => true]) ?>
                     <?= $form->field($model->features, 'glass')->textInput(['maxlength' => true]) ?>
                     <?= $form->field($model->features, 'features')->widget(CKEditor::className()) ?>
+                </div>
+            </div>
+            <div class="box">
+                <div class="box-header with-border">Цвета</div>
+                <div class="box-body">
+                    <?= $form->field($model->colors, 'existing')->checkboxList($model->colors->colorList()) ?>
+                </div>
+            </div>
+            <div class="box">
+                <div class="box-header with-border">Материалы</div>
+                <div class="box-body">
+                    <?= $form->field($model->materials, 'existing')->checkboxList($model->materials->materialList()) ?>
+                </div>
+            </div>
+            <div class="box">
+                <div class="box-header with-border">Размеры</div>
+                <div class="box-body">
+                    <?= $form->field($model->sizes, 'existing')->checkboxList($model->sizes->sizeList()) ?>
                 </div>
             </div>
         </div>
