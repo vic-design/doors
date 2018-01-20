@@ -12,9 +12,18 @@ class m180114_073613_create_related_assignments_table extends Migration
      */
     public function up()
     {
-        $this->createTable('related_assignments', [
-            'id' => $this->primaryKey(),
+        $this->createTable('{{%product_related_assignments}}', [
+            'product_id' => $this->integer()->notNull(),
+            'related_id' => $this->integer()->notNull(),
         ]);
+
+        $this->addPrimaryKey('{{%pk-product_related_assignments}}', '{{%product_related_assignments}}', ['product_id', 'related_id']);
+
+        $this->createIndex('{{%idx-product_related_assignments-product-id}}', '{{%product_related_assignments}}', 'product_id');
+        $this->createIndex('{{%idx-product_related_assignments-related-id}}', '{{%product_related_assignments}}', 'related_id');
+
+        $this->addForeignKey('{{%fk-product_related_assignments-product-id-id}}', '{{%product_related_assignments}}', 'product_id', '{{%shop_products}}', 'id', 'CASCADE', 'RESTRICT');
+        $this->addForeignKey('{{%fk-product_related_assignments-related-id-id}}', '{{%product_related_assignments}}', 'related_id', '{{%shop_products}}', 'id', 'CASCADE', 'RESTRICT');
     }
 
     /**
@@ -22,6 +31,8 @@ class m180114_073613_create_related_assignments_table extends Migration
      */
     public function down()
     {
-        $this->dropTable('related_assignments');
+        $this->dropForeignKey('{{%fk-product_related_assignments-related-id-id}}', '{{%product_related_assignments}}');
+        $this->dropForeignKey('{{%fk-product_related_assignments-product-id-id}}', '{{%product_related_assignments}}');
+        $this->dropTable('{{%product_related_assignments}}');
     }
 }

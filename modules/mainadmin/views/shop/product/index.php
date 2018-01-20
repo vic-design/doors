@@ -24,13 +24,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            [
-                'value' => function(Product $product)
-                {
-                    return $product->mainPhoto ? $product->mainPhoto->getThumbFileUrl('file', 'admin') : null;
-                },
-                'format' => 'html',
-            ],
             'id',
             [
                 'attribute' => 'name',

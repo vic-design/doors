@@ -19,13 +19,16 @@ $this->params['breadcrumbs'][] = 'Редактирование';
         <div class="box-header with-border">Общее</div>
         <div class="box-body">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
+                    <?= $form->field($model, 'additionalName')->textInput(['maxlength' => true]) ?>
+                </div>
+                <div class="col-sm-3">
                     <?= $form->field($model, 'code')->textInput(['maxlength' => true]) ?>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <?= $form->field($model, 'slug')->textInput(['maxlength' => true])->hint('не заполняйте это поле. Привозникновении ошибок и замечаний, обратитесь к администратору и получите инструкции по заполнению.') ?>
                 </div>
             </div>
@@ -63,6 +66,34 @@ $this->params['breadcrumbs'][] = 'Редактирование';
                 <div class="box-header with-border">Размеры</div>
                 <div class="box-body">
                     <?= $form->field($model->sizes, 'existing')->checkboxList($model->sizes->sizeList()) ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="box">
+        <div class="box-header with-border">С этим товаром покупают</div>
+        <div class="box-body">
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#related2" aria-expanded="false" aria-controls="collapseExample">
+                Список товаров
+            </button>
+            <div class="collapse" id="related2">
+                <div class="well">
+                    <?= $form->field($model->relates, 'existing')->label(false)->checkboxList($model->relates->relatesList()) ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="box">
+        <div class="box-header with-border">Дополнительные товары</div>
+        <div class="box-body">
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#additional2" aria-expanded="false" aria-controls="collapseExample">
+                Список дополнительных товаров
+            </button>
+            <div class="collapse" id="additional2">
+                <div class="well">
+                    <?= $form->field($model->additions, 'existing')->label(false)->checkboxList($model->additions->additionalList()) ?>
                 </div>
             </div>
         </div>

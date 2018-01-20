@@ -62,6 +62,7 @@ class ProductSearch extends Model
         $query->andFilterWhere([
             'id' => $this->id,
             'category_id' => $this->category_id,
+            'status' => $this->status,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])

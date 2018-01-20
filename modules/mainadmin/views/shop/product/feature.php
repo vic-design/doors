@@ -16,10 +16,21 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php $form = ActiveForm::begin() ?>
     <div class="box">
         <div class="box-body">
-            <?= $form->field($model, 'features')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'innerFacing')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'outFacing')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'glass')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'reveal')->textInput() ?>
+            <?= $form->field($model, 'opening')->textarea(['rows' => 3]) ?>
+            <?= $form->field($model, 'complect')->textarea(['rows' => 3]) ?>
+            <?= $form->field($model, 'packing')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'bracing')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'weight')->textInput() ?>
+            <?= $form->field($model, 'describe')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'features')->textarea(['rows' => 3]) ?>
+            <?= $form->field($model, 'cam')->textarea(['rows' => 3]) ?>
+            <?= $form->field($model, 'doorInsulation')->textarea(['rows' => 3]) ?>
+            <?= $form->field($model, 'boxInsulation')->textarea(['rows' => 3]) ?>
+            <?= $form->field($model, 'intensive')->textarea(['rows' => 3]) ?>
         </div>
     </div>
     <div class="form-group">

@@ -2,6 +2,7 @@
 
 namespace app\modules\mainadmin\controllers\shop;
 
+use app\fond\entities\manage\shop\Modification;
 use app\fond\forms\manage\shop\FeaturesForm;
 use app\fond\forms\manage\shop\PhotosForm;
 use app\fond\forms\manage\shop\PriceForm;
@@ -12,6 +13,7 @@ use app\fond\service\shop\ProductManageService;
 use Yii;
 use app\fond\entities\manage\shop\Product;
 use app\modules\mainadmin\forms\ProductSearch;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -78,6 +80,16 @@ class ProductController extends Controller
     public function actionView($id)
     {
         $product = $this->findModel($id);
+        $modificationsProvider = new ActiveDataProvider([
+            'query' => $product->getModifications()->orderBy('name'),
+            'key' => function(Modification $modification) use($product){
+                return [
+                    'productId' => $product->id,
+                    'id' => $modification->id,
+                ];
+            },
+            'pagination' => false,
+        ]);
         $photosForm = new PhotosForm();
         if ($photosForm->load(Yii::$app->request->post()) && $photosForm->validate()){
             try{
@@ -91,6 +103,7 @@ class ProductController extends Controller
         return $this->render('view', [
             'product' => $product,
             'photosForm' => $photosForm,
+            'modificationsProvider' => $modificationsProvider,
         ]);
     }
 
@@ -151,12 +164,14 @@ class ProductController extends Controller
         $product = $this->findModel($id);
         $form = new PriceForm($product);
 
-        try{
-            $this->service->changePrice($product->id, $form);
-            return $this->redirect(['view', 'id' => $product->id]);
-        }catch (\DomainException $e){
-            Yii::$app->errorHandler->logException($e);
-            Yii::$app->session->setFlash('error', $e->getMessage());
+        if ($form->load(Yii::$app->request->post()) && $form->validate()){
+            try{
+                $this->service->changePrice($product->id, $form);
+                return $this->redirect(['view', 'id' => $product->id]);
+            }catch (\DomainException $e){
+                Yii::$app->errorHandler->logException($e);
+                Yii::$app->session->setFlash('error', $e->getMessage());
+            }
         }
         return $this->render('price', [
             'product' => $product,
@@ -183,7 +198,7 @@ class ProductController extends Controller
         ]);
     }
 
-    public function actionFeatures($id)
+    public function actionFeature($id)
     {
         $product = $this->findModel($id);
         $form = new FeaturesForm($product);
@@ -236,7 +251,7 @@ class ProductController extends Controller
         return $this->redirect(['view', 'id' => $id, '#' => 'photos']);
     }
 
-    public function removePhoto($id, $photoId)
+    public function actionRemovePhoto($id, $photoId)
     {
         try{
             $this->service->removePhoto($id, $photoId);

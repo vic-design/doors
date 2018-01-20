@@ -16,10 +16,13 @@ use elisdn\compositeForm\CompositeForm;
  * @property ColorsForm $colors
  * @property MaterialsForm $materials
  * @property SizesForm $sizes
+ * @property RelatedForm $relates
+ * @property AdditionsForm $additions
  */
 class ProductCreateForm extends CompositeForm
 {
     public $name;
+    public $additionalName;
     public $code;
     public $body;
     public $slug;
@@ -37,6 +40,8 @@ class ProductCreateForm extends CompositeForm
         $this->colors = new ColorsForm();
         $this->materials = new MaterialsForm();
         $this->sizes = new SizesForm();
+        $this->relates = new RelatedForm();
+        $this->additions = new AdditionsForm();
         parent::__construct($config);
     }
 
@@ -44,10 +49,10 @@ class ProductCreateForm extends CompositeForm
     {
         return [
             [['name', 'code'], 'required'],
-            [['name', 'code', 'slug', 'title', 'description', 'keywords'], 'string', 'max' => 255],
+            [['name', 'code', 'slug', 'title', 'description', 'keywords', 'additionalName'], 'string', 'max' => 255],
             ['body', 'string'],
             ['slug', SlugValidator::class],
-            [['name', 'slug', 'code'], 'unique', 'targetClass' => Product::class],
+            [['slug', 'code'], 'unique', 'targetClass' => Product::class],
         ];
     }
 
@@ -55,6 +60,8 @@ class ProductCreateForm extends CompositeForm
     {
         return [
             'name' => 'Название',
+            'additionalName' => 'Доп. название',
+            'additional_name' => 'Доп. название',
             'code' => 'Артикул',
             'body' => 'Описание',
             'slug' => 'Алиас',
@@ -67,7 +74,7 @@ class ProductCreateForm extends CompositeForm
     protected function internalForms()
     {
         return [
-            'price', 'thickness', 'features', 'photos', 'categories', 'colors', 'materials', 'sizes',
+            'price', 'thickness', 'features', 'photos', 'categories', 'colors', 'materials', 'sizes', 'relates', 'additions',
         ];
     }
 }

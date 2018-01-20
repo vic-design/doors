@@ -1,7 +1,7 @@
-$('.fancybox').fancybox({
+$('.fancybox').fancybox(/*{
     fitToView: false,
     autoSize: false
-});
+}*/);
 
 $('ul.nav > li').hover(function() {
     $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn();

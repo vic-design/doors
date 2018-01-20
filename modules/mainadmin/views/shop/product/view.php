@@ -3,13 +3,16 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\helpers\ArrayHelper;
-use app\fond\helpers\PriceHelper;
 use yii\bootstrap\ActiveForm;
 use kartik\file\FileInput;
+use yii\grid\GridView;
+use app\fond\entities\manage\shop\Modification;
+use yii\grid\ActionColumn;
 
 /* @var $this yii\web\View */
 /* @var $product app\fond\entities\manage\shop\Product */
 /* @var $photosForm \app\fond\forms\manage\shop\PhotosForm */
+/* @var $modificationsProvider \yii\data\ActiveDataProvider */
 
 $this->title = $product->name;
 $this->params['breadcrumbs'][] = ['label' => 'Товары', 'url' => ['index']];
@@ -42,10 +45,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     'id',
                     [
                         'attribute' => 'main_photo_id',
-                        'value' => $product->mainPhoto ? Html::img($product->mainPhoto->getThumbFileUrl('file', 'admin')) : null,
+                        'value' => $product->mainPhoto ? Html::img($product->mainPhoto->getThumbFileUrl('file', 'mini')) : null,
                         'format' => 'html',
                     ],
                     'name',
+                    'additional_name',
                     'code',
                     'body:html',
                     [
@@ -54,22 +58,60 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                     [
                         'label' => 'Дополнительные категории',
-                        'value' => implode(', ', ArrayHelper::getValue($product->categories, 'name'))
+                        'value' => implode(', ', ArrayHelper::getColumn($product->categories, 'name'))
                     ],
                     [
                         'label' => 'Цвета',
-                        'value' => implode(', ', ArrayHelper::getValue($product->colors, 'name')),
+                        'value' => implode(', ', ArrayHelper::getColumn($product->colors, 'name')),
                     ],
                     [
                         'label' => 'Материалы',
-                        'value' => implode(', ', ArrayHelper::getValue($product->materials, 'name')),
+                        'value' => implode(', ', ArrayHelper::getColumn($product->materials, 'name')),
                     ],
                     [
                         'label' => 'Размеры',
-                        'value' => implode(', ', ArrayHelper::getValue($product->sizes, 'name')),
+                        'value' => implode(', ', ArrayHelper::getColumn($product->sizes, 'name')),
+                    ],
+                    [
+                        'label' => 'Сопутствующие товары',
+                        'value' => implode(', ', ArrayHelper::getColumn($product->relates, 'name'))
+                    ],
+                    [
+                        'label' => 'Дополнительные товары',
+                        'value' => implode(', ', ArrayHelper::getColumn($product->additions, 'name'))
                     ],
                     'created_at:datetime',
                     'updated_at:datetime',
+                ],
+            ]) ?>
+        </div>
+    </div>
+    <div class="box" id="modifications">
+        <div class="box-header with-border">Модификации товара</div>
+        <div class="box-body">
+            <p>
+                <?= Html::a('Добавить модификацию', ['shop/modification/create', 'productId' => $product->id], ['class' => 'btn btn-primary']) ?>
+            </p>
+            <?= GridView::widget([
+                'dataProvider' => $modificationsProvider,
+                'columns' => [
+                    'name',
+                    'additional_name',
+                    'code',
+                    'price',
+                    [
+                        'attribute' => 'photo',
+                        'value' => function(Modification $modification)
+                        {
+                            return Html::a(Html::img($modification->getThumbFileUrl('photo', 'modification')), [$modification->getThumbFileUrl('photo', 'full')], ['class' => 'fancybox']);
+                        },
+                        'format' => 'html',
+                    ],
+                    [
+                        'class' => ActionColumn::class,
+                        'controller' => 'shop/modification',
+                        'template' => '{update} {delete}'
+                    ],
                 ],
             ]) ?>
         </div>
@@ -81,26 +123,11 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= DetailView::widget([
                 'model' => $product,
                 'attributes' => [
-                    [
-                        'attribute' => 'door_old_price',
-                        'value' => PriceHelper::format($product->door_old_price) . '<i class="fa fa-rub" aria-hidden="true"></i>',
-                    ],
-                    [
-                        'attribute' => 'box_old_price',
-                        'value' => PriceHelper::format($product->box_old_price) . '<i class="fa fa-rub" aria-hidden="true"></i>',
-                    ],
-                    [
-                        'attribute' => 'box_price',
-                        'value' => PriceHelper::format($product->box_price) . '<i class="fa fa-rub" aria-hidden="true"></i>',
-                    ],
-                    [
-                        'attribute' => 'old_price',
-                        'value' => PriceHelper::format($product->old_price) . '<i class="fa fa-rub" aria-hidden="true"></i>',
-                    ],
-                    [
-                        'attribute' => 'price',
-                        'value' => PriceHelper::format($product->price) . '<i class="fa fa-rub" aria-hidden="true"></i>',
-                    ],
+                    'door_old_price',
+                    'box_old_price',
+                    'box_price',
+                    'old_price',
+                    'price',
                 ],
             ]) ?>
         </div>
@@ -133,6 +160,17 @@ $this->params['breadcrumbs'][] = $this->title;
                     'out_facing',
                     'glass',
                     'features:html',
+                    'describe',
+                    'reveal',
+                    'opening',
+                    'complect',
+                    'cam',
+                    'packing',
+                    'door_insulation',
+                    'box_insulation',
+                    'intensive',
+                    'bracing' ,
+                    'weight',
                 ],
             ]) ?>
         </div>
@@ -164,7 +202,9 @@ $this->params['breadcrumbs'][] = $this->title;
                             <?= Html::a('<span class="glyphicon glyphicon-arrow-right"></span>', ['move-photo-down', 'id' => $product->id, 'photoId' => $photo->id], ['class' => 'btn btn-default', 'data-method' => 'post']) ?>
                         </div>
                         <div>
-                            <?= Html::img($photo->getThumbFileUrl('file', 'admin')) ?>
+                            <a href="<?= $photo->getThumbFileUrl('file', 'full') ?>" class="fancybox">
+                                <?= Html::img($photo->getThumbFileUrl('file', 'admin')) ?>
+                            </a>
                         </div>
                     </div>
                 <?php endforeach; ?>

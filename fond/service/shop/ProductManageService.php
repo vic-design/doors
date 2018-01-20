@@ -5,6 +5,7 @@ namespace app\fond\service\shop;
 
 use app\fond\entities\manage\shop\Product;
 use app\fond\forms\manage\shop\FeaturesForm;
+use app\fond\forms\manage\shop\ModificationForm;
 use app\fond\forms\manage\shop\PhotosForm;
 use app\fond\forms\manage\shop\PriceForm;
 use app\fond\forms\manage\shop\ProductCreateForm;
@@ -47,6 +48,7 @@ class ProductManageService
         $category = $this->categories->get($form->categories->main);
         $product = Product::create(
             $form->name,
+            $form->additionalName,
             $category->id,
             $form->code,
             $form->body,
@@ -72,7 +74,18 @@ class ProductManageService
             $form->features->features,
             $form->features->innerFacing,
             $form->features->outFacing,
-            $form->features->glass
+            $form->features->glass,
+            $form->features->describe,
+            $form->features->reveal,
+            $form->features->opening,
+            $form->features->complect,
+            $form->features->cam,
+            $form->features->packing,
+            $form->features->doorInsulation,
+            $form->features->boxInsulation,
+            $form->features->intensive,
+            $form->features->bracing,
+            $form->features->weight
         );
         if (!empty($form->categories->others)){
             foreach ($form->categories->others as $otherId){
@@ -80,7 +93,7 @@ class ProductManageService
                 $product->assignCategory($category->id);
             }
         }
-        if (!$form->photos->files){
+        if ($form->photos->files){
             foreach ($form->photos->files as $file) {
                 $product->addPhoto($file);
             }
@@ -107,6 +120,18 @@ class ProductManageService
             }
         }
 
+        if ($form->relates->existing){
+            foreach ($form->relates->existing as $relateId){
+                $product->assignRelatedProduct($relateId);
+            }
+        }
+
+        if ($form->additions->existing){
+            foreach ($form->additions->existing as $additionId){
+                $product->addAdditionalProduct($additionId);
+            }
+        }
+
         $this->products->save($product);
 
         return $product;
@@ -125,6 +150,7 @@ class ProductManageService
 
         $product->edit(
             $form->name,
+            $form->additionalName,
             $category->id,
             $form->code,
             $form->body,
@@ -139,6 +165,8 @@ class ProductManageService
            $product->revokeColors();
            $product->revokeMaterials();
            $product->revokeSizes();
+           $product->revokeRelatedProducts();
+           $product->revokeAdditionalProducts();
            $this->products->save($product);
 
             if (!empty($form->categories->others)){
@@ -166,6 +194,18 @@ class ProductManageService
                 foreach ($form->sizes->existing as $sizeId){
                     $size = $this->sizes->get($sizeId);
                     $product->addSize($size->id);
+                }
+            }
+
+            if ($form->relates->existing){
+                foreach ($form->relates->existing as $relateId){
+                    $product->assignRelatedProduct($relateId);
+                }
+            }
+
+            if ($form->additions->existing){
+                foreach ($form->additions->existing as $additionId){
+                    $product->addAdditionalProduct($additionId);
                 }
             }
             $this->products->save($product);
@@ -221,7 +261,18 @@ class ProductManageService
             $form->features,
             $form->innerFacing,
             $form->outFacing,
-            $form->glass
+            $form->glass,
+            $form->describe,
+            $form->reveal,
+            $form->opening,
+            $form->complect,
+            $form->cam,
+            $form->packing,
+            $form->doorInsulation,
+            $form->boxInsulation,
+            $form->intensive,
+            $form->bracing,
+            $form->weight
         );
         $this->products->save($product);
     }
@@ -299,6 +350,66 @@ class ProductManageService
     {
         $product = $this->products->get($id);
         $product->removePhoto($photoId);
+        $this->products->save($product);
+    }
+
+    ##########
+
+    /**
+     * @param $id
+     * @param ModificationForm $form
+     * @throws \yii\web\NotFoundHttpException
+     */
+    public function addModification($id, ModificationForm $form): void
+    {
+        $product = $this->products->get($id);
+        $product->addModification(
+            $form->id,
+            $form->name,
+            $form->additionalName,
+            $form->code,
+            $form->price
+        );
+        $this->products->save($product);
+
+        if (!empty($form->photo)){
+            $product->addModificationPhoto($form->id, $form->photo);
+        }
+        $this->products->save($product);
+    }
+
+    /**
+     * @param $id
+     * @param $modificationId
+     * @param ModificationForm $form
+     * @throws \yii\web\NotFoundHttpException
+     */
+    public function editModification($id, $modificationId, ModificationForm $form): void
+    {
+        $product = $this->products->get($id);
+        $product->editModification(
+            $modificationId,
+            $form->name,
+            $form->additionalName,
+            $form->code,
+            $form->price
+        );
+        $this->products->save($product);
+        if (!empty($form->photo)){
+            $product->addModificationPhoto($modificationId, $form->photo);
+        }
+        $this->products->save($product);
+    }
+
+    /**
+     * @param $id
+     * @param $modificationId
+     * @throws \yii\web\NotFoundHttpException
+     */
+    public function removeModification($id, $modificationId): void
+    {
+        $product = $this->products->get($id);
+        $product->removeModification($modificationId);
         $this->products->save($product);
     }
 

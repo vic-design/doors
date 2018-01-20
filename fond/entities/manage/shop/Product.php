@@ -12,6 +12,7 @@ use yii\web\UploadedFile;
 /**
  * @property int $id [int(11)]
  * @property string $name [varchar(255)]
+ * @property string $additional_name [varchar(255)]
  * @property int $category_id [int(11)]
  * @property int $main_photo_id [int(11)]
  * @property string $code [varchar(255)]
@@ -36,6 +37,17 @@ use yii\web\UploadedFile;
  * @property string $keywords [varchar(255)]
  * @property int $created_at [int(11)]
  * @property int $updated_at [int(11)]
+ * @property string $describe
+ * @property string $reveal [varchar(255)]
+ * @property string $opening
+ * @property string $complect
+ * @property string $cam
+ * @property string $packing [varchar(255)]
+ * @property string $door_insulation
+ * @property string $box_insulation
+ * @property string $intensive
+ * @property string $bracing [varchar(255)]
+ * @property float $weight [float]
  *
  * @property CategoryAssignment[] $categoryAssignments
  * @property Photo[] photos
@@ -46,16 +58,22 @@ use yii\web\UploadedFile;
  * @property Material[] $materials
  * @property SizeAssignment[] $sizeAssignments
  * @property Size[] $sizes
+ * @property RelatedAssignment[] $relatedAssignments
+ * @property AdditionalAssignment[] $additionalAssignments
+ * @property Product[] $relates
+ * @property Product[] $additions
+ * @property Modification[] $modifications
  */
 class Product extends ActiveRecord
 {
     const STATUS_DRAFT = 0;
     const STATUS_ACTIVE = 1;
 
-    public static function create($name, $categoryId, $code, $body, $slug, $title, $description, $keywords): self
+    public static function create($name, $additionalName, $categoryId, $code, $body, $slug, $title, $description, $keywords): self
     {
         $product = new static();
         $product->name = $name;
+        $product->additional_name = $additionalName;
         $product->category_id = $categoryId;
         $product->code = $code;
         $product->body = $body;
@@ -86,12 +104,23 @@ class Product extends ActiveRecord
         $this->frame_steel_thickness = $frameSteelThickness;
     }
 
-    public function setFeatures($features, $innerFacing, $outFacing, $glass)
+    public function setFeatures($features, $innerFacing, $outFacing, $glass, $describe, $reveal, $opening, $complect, $cam, $packing, $door_insulation, $box_insulation, $intensive, $bracing, $weight)
     {
         $this->features = $features;
         $this->inner_facing = $innerFacing;
         $this->out_facing = $outFacing;
         $this->glass = $glass;
+        $this->describe = $describe;
+        $this->reveal =  $reveal;
+        $this->opening = $opening;
+        $this->complect = $complect;
+        $this->cam = $cam;
+        $this->packing = $packing ;
+        $this->door_insulation = $door_insulation;
+        $this->box_insulation = $box_insulation;
+        $this->intensive = $intensive;
+        $this->bracing = $bracing;
+        $this->weight = $weight;
     }
 
     public function changeMainCategory($categoryId): void
@@ -99,9 +128,10 @@ class Product extends ActiveRecord
         $this->category_id = $categoryId;
     }
 
-    public function edit($name, $categoryId, $code, $body, $slug, $title, $description, $keywords)
+    public function edit($name, $additionalName, $categoryId, $code, $body, $slug, $title, $description, $keywords)
     {
         $this->name = $name;
+        $this->additional_name = $additionalName;
         $this->category_id = $categoryId;
         $this->code = $code;
         $this->body = $body;
@@ -116,6 +146,8 @@ class Product extends ActiveRecord
     {
         return [
             'name' => 'Название',
+            'additional_name' => 'Доп. название',
+            'additionalName' => 'Доп. название',
             'category_id' => 'Категория',
             'code' => 'Артикул',
             'body' => 'Описание',
@@ -125,6 +157,43 @@ class Product extends ActiveRecord
             'keywords' => 'МЕТА ключевые слова',
             'created_at' => 'Создано',
             'updated_at' => 'Обновлено',
+            'features' => 'Особенности',
+            'innerFacing' => 'Внутренняя отделка',
+            'inner_facing' => 'Внутренняя отделка',
+            'outFacing' => 'Внешняя отделка',
+            'out_facing' => 'Внешняя отделка',
+            'glass' => 'Стекло',
+            'describe' => 'Отделка',
+            'reveal' =>  'Ширина наличника',
+            'opening' => 'Открывание',
+            'cam' => 'Эксцентрик',
+            'packing' => 'Уплотнение',
+            'doorInsulation' => 'Утепление двери',
+            'door_insulation' => 'Утепление двери',
+            'boxInsulation' => 'Утепление коробки',
+            'box_insulation' => 'Утепление коробки',
+            'intensive' => 'Усиление',
+            'bracing' => 'Крепление',
+            'weight' => 'Вес(кг)',
+            'doorOldPrice' => 'Старая цена на полотно',
+            'door_old_price' => 'Старая цена на полотно',
+            'boxOldPrice' => 'Старая цена за комплект',
+            'box_old_price' => 'Старая цена за комплект',
+            'boxPrice' => 'Цена за комплект',
+            'box_price' => 'Цена за комплект',
+            'oldPrice' => 'Старая цена',
+            'old_price' => 'Старая цена',
+            'price' => 'Цена товара',
+            'doorThickness' => 'Толщина полотна',
+            'door_thickness' => 'Толщина полотна',
+            'doorFrameThickness' => 'Толщина коробки',
+            'door_frame_thickness' => 'Толщина коробки',
+            'doorSteelThickness' => 'Толщина стали полотна',
+            'door_steel_thickness' => 'Толщина стали полотна',
+            'frame_steel_thickness' => 'Толщина стали коробки',
+            'main_photo_id' => 'Главное фото',
+            'status' => 'Состояние',
+            'complect' => 'Комплектующие',
         ];
     }
 
@@ -353,16 +422,151 @@ class Product extends ActiveRecord
 
     #########
 
+    public function assignRelatedProduct($id): void
+    {
+        $assignments = $this->relatedAssignments;
+        foreach ($assignments as $assignment){
+            if ($assignment->isForRelate($id)){
+                return;
+            }
+        }
+        $assignments[] = RelatedAssignment::create($id);
+        $this->relatedAssignments = $assignments;
+    }
+
+    public function removeRelatedProduct($id): void
+    {
+        $assignments = $this->relatedAssignments;
+        foreach ($assignments as $i => $assignment){
+            if ($assignment->isForRelate($id)){
+                unset($assignments[$i]);
+                $this->relatedAssignments = $assignments;
+                return;
+            }
+        }
+        throw new \DomainException('Упсс ... не получмлось.');
+    }
+
+    public function revokeRelatedProducts(): void
+    {
+        $this->relatedAssignments = [];
+    }
+
+    #########
+
+    public function addAdditionalProduct($id): void
+    {
+        $assignments = $this->additionalAssignments;
+        foreach ($assignments as $assignment){
+            if ($assignment->isForAddition($id)){
+                return;
+            }
+        }
+        $assignments[] = AdditionalAssignment::create($id);
+        $this->additionalAssignments = $assignments;
+    }
+
+    public function revokeAdditionalProduct($id): void
+    {
+        $assignments = $this->additionalAssignments;
+        foreach ($assignments as $i => $assignment){
+            if ($assignment->isForAddition($id)){
+                unset($assignments[$i]);
+                $this->additionalAssignments = $assignments;
+                return;
+            }
+        }
+        throw new \DomainException('Что то не сработало.');
+    }
+
+    public function revokeAdditionalProducts(): void
+    {
+        $this->additionalAssignments = [];
+    }
+
+    #########
+
+    public function getModification($id): Modification
+    {
+        foreach ($this->modifications as $modification){
+            if ($modification->isEqualTo($id)){
+                return $modification;
+            }
+        }
+        throw new \DomainException('Такая модифмкация не найдена.');
+    }
+
+    public function getModificationPrice($id): int
+    {
+        foreach ($this->modifications as $modification){
+            if ($modification->isEqualTo($id)){
+                return $modification->price ? : $this->price;
+            }
+        }
+        throw new \DomainException('Такая модифмкация не найдена.');
+    }
+
+    public function addModification($id, $name, $additionalName, $code, $price): void
+    {
+        $modifications = $this->modifications;
+        foreach ($modifications as $modification){
+            if ($modification->isCodeEqualTo($code)){
+                throw new \DomainException('Такая модификация уже создана.');
+            }
+        }
+        $modifications[] = Modification::create($id, $name, $additionalName, $code, $price);
+        $this->modifications = $modifications;
+    }
+
+    public function addModificationPhoto($id, UploadedFile $photo): void
+    {
+        $modifications = $this->modifications;
+        foreach ($modifications as $modification){
+            if ($modification->isEqualTo($id)){
+                $modification->setPhoto($photo);
+                $modification->save();
+                return;
+            }
+        }
+        throw new \DomainException('Что то не прокатывает.');
+    }
+
+    public function editModification($id, $name, $additionalName, $code, $price): void
+    {
+        $modifications = $this->modifications;
+        foreach ($modifications as $modification){
+            if ($modification->isEqualTo($id)){
+                $modification->edit($name, $additionalName, $code, $price);
+                $this->modifications = $modifications;
+                return;
+            }
+        }
+        throw new \DomainException('Модификация не найдена.');
+    }
+
+    public function removeModification($id): void
+    {
+        $modifications = $this->modifications;
+        foreach ($modifications as $i => $modification){
+            if ($modification->isEqualTo($id)){
+                unset($modifications[$i]);
+                $this->modifications = $modifications;
+                return;
+            }
+        }
+        throw new \DomainException('Модификация не найдена.');
+    }
+
+    #########
+
     public function getCategory(): ActiveQuery
     {
         return $this->hasOne(Category::class, ['id' => 'category_id']);
     }
-
     public function getCategoryAssignments(): ActiveQuery
     {
         return $this->hasMany(CategoryAssignment::class, ['product_id' => 'id']);
     }
-
     public function getCategories()
     {
         return $this->hasMany(Category::class, ['id' => 'category_id'])->via('categoryAssignments');
@@ -372,7 +576,6 @@ class Product extends ActiveRecord
     {
         return $this->hasMany(Photo::class, ['product_id' => 'id'])->orderBy('sort');
     }
-
     public function getMainPhoto(): ActiveQuery
     {
         return $this->hasOne(Photo::class, ['id' => 'main_photo_id']);
@@ -382,7 +585,6 @@ class Product extends ActiveRecord
     {
         return $this->hasMany(ColorAssignment::className(), ['product_id' => 'id']);
     }
-
     public function getColors(): ActiveQuery
     {
         return $this->hasMany(Color::className(), ['id' => 'color_id'])->via('colorAssignments');
@@ -392,7 +594,6 @@ class Product extends ActiveRecord
     {
         return $this->hasMany(MaterialAssignment::className(), ['product_id' => 'id']);
     }
-
     public function getMaterials(): ActiveQuery
     {
         return $this->hasMany(Material::className(), ['id' => 'material_id'])->via('materialAssignments');
@@ -402,10 +603,32 @@ class Product extends ActiveRecord
     {
         return $this->hasMany(SizeAssignment::className(), ['product_id' => 'id']);
     }
-
     public function getSizes(): ActiveQuery
     {
         return $this->hasMany(Size::className(), ['id' => 'size_id'])->via('sizeAssignments');
+    }
+
+    public function getRelatedAssignments(): ActiveQuery
+    {
+        return $this->hasMany(RelatedAssignment::className(), ['product_id' => 'id']);
+    }
+    public function getRelates(): ActiveQuery
+    {
+        return $this->hasMany(Product::className(), ['id' => 'related_id'])->via('relatedAssignments');
+    }
+
+    public function getAdditionalAssignments(): ActiveQuery
+    {
+        return $this->hasMany(AdditionalAssignment::className(), ['product_id' => 'id']);
+    }
+    public function getAdditions(): ActiveQuery
+    {
+        return $this->hasMany(Product::className(), ['id' => 'additional_id'])->via('additionalAssignments');
+    }
+
+    public function getModifications(): ActiveQuery
+    {
+        return $this->hasMany(Modification::className(), ['product_id' => 'id']);
     }
 
     #########
@@ -421,6 +644,9 @@ class Product extends ActiveRecord
                     'colorAssignments',
                     'materialAssignments',
                     'sizeAssignments',
+                    'relatedAssignments',
+                    'additionalAssignments',
+                    'modifications',
                 ],
             ],
         ];

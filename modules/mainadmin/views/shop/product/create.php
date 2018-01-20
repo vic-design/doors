@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use mihaildev\ckeditor\CKEditor;
 use kartik\file\FileInput;
+use app\widgets\ProductWidget;
 
 
 /* @var $this yii\web\View */
@@ -23,13 +24,16 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="box-header with-border">Общее</div>
         <div class="box-body">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
+                    <?= $form->field($model, 'additionalName')->textInput(['maxlength' => true]) ?>
+                </div>
+                <div class="col-sm-3">
                     <?= $form->field($model, 'code')->textInput(['maxlength' => true]) ?>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <?= $form->field($model, 'slug')->textInput(['maxlength' => true])->hint('не заполняйте это поле. При возникновении ошибок и замечаний, обратитесь к администратору и получите инструкции по заполнению.') ?>
                 </div>
             </div>
@@ -76,7 +80,18 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= $form->field($model->features, 'innerFacing')->textInput(['maxlength' => true]) ?>
                     <?= $form->field($model->features, 'outFacing')->textInput(['maxlength' => true]) ?>
                     <?= $form->field($model->features, 'glass')->textInput(['maxlength' => true]) ?>
-                    <?= $form->field($model->features, 'features')->widget(CKEditor::className()) ?>
+                    <?= $form->field($model->features, 'reveal')->textInput() ?>
+                    <?= $form->field($model->features, 'opening')->textarea(['rows' => 3]) ?>
+                    <?= $form->field($model->features, 'complect')->textarea(['rows' => 3]) ?>
+                    <?= $form->field($model->features, 'packing')->textInput(['maxlength' => true]) ?>
+                    <?= $form->field($model->features, 'bracing')->textInput(['maxlength' => true]) ?>
+                    <?= $form->field($model->features, 'weight')->textInput() ?>
+                    <?= $form->field($model->features, 'describe')->textarea(['rows' => 3]) ?>
+                    <?= $form->field($model->features, 'features')->textarea(['rows' => 3]) ?>
+                    <?= $form->field($model->features, 'cam')->textarea(['rows' => 3]) ?>
+                    <?= $form->field($model->features, 'doorInsulation')->textarea(['rows' => 3]) ?>
+                    <?= $form->field($model->features, 'boxInsulation')->textarea(['rows' => 3]) ?>
+                    <?= $form->field($model->features, 'intensive')->textarea(['rows' => 3]) ?>
                 </div>
             </div>
             <div class="box">
@@ -95,6 +110,34 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="box-header with-border">Размеры</div>
                 <div class="box-body">
                     <?= $form->field($model->sizes, 'existing')->checkboxList($model->sizes->sizeList()) ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="box">
+        <div class="box-header with-border">С этим товаром покупают</div>
+        <div class="box-body">
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#related1" aria-expanded="false" aria-controls="collapseExample">
+                Список товаров
+            </button>
+            <div class="collapse" id="related1">
+                <div class="well">
+                    <?= $form->field($model->relates, 'existing')->label(false)->checkboxList($model->relates->relatesList()) ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="box">
+        <div class="box-header with-border">Дополнительные товары</div>
+        <div class="box-body">
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#additional1" aria-expanded="false" aria-controls="collapseExample">
+                Список дополнительных товаров
+            </button>
+            <div class="collapse" id="additional1">
+                <div class="well">
+                    <?= $form->field($model->additions, 'existing')->label(false)->checkboxList($model->additions->additionalList()) ?>
                 </div>
             </div>
         </div>

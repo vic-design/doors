@@ -266,6 +266,10 @@ body{
         }
     }
 }
+div.required label:after {
+    content: " *";
+    color: red;
+}
 
 
 /* FOOTER */

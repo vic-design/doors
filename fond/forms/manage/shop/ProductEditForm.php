@@ -12,10 +12,13 @@ use elisdn\compositeForm\CompositeForm;
  * @property ColorsForm $colors
  * @property MaterialsForm $materials
  * @property SizesForm $sizes
+ * @property RelatedForm $relates
+ * @property AdditionsForm $additions
  */
 class ProductEditForm extends CompositeForm
 {
     public $name;
+    public $additionalName;
     public $code;
     public $body;
     public $slug;
@@ -28,6 +31,7 @@ class ProductEditForm extends CompositeForm
     public function __construct(Product $product, array $config = [])
     {
         $this->name = $product->name;
+        $this->additionalName = $product->additional_name;
         $this->code = $product->code;
         $this->body = $product->body;
         $this->slug = $product->slug;
@@ -39,6 +43,8 @@ class ProductEditForm extends CompositeForm
         $this->colors = new ColorsForm($product);
         $this->materials = new MaterialsForm($product);
         $this->sizes = new SizesForm($product);
+        $this->relates = new RelatedForm($product);
+        $this->additions = new AdditionsForm($product);
         parent::__construct($config);
     }
 
@@ -46,10 +52,10 @@ class ProductEditForm extends CompositeForm
     {
         return [
             [['name', 'code'], 'required'],
-            [['name', 'code', 'slug', 'title', 'description', 'keywords'], 'string', 'max' => 255],
+            [['name', 'code', 'slug', 'title', 'description', 'keywords', 'additionalName'], 'string', 'max' => 255],
             ['body', 'string'],
             ['slug', SlugValidator::class],
-            [['alias', 'code'], 'unique', 'targetClass' => Product::class, 'filter' => $this->_product ? ['<>', 'id', $this->_product->id] : null],
+            [['slug', 'code'], 'unique', 'targetClass' => Product::class, 'filter' => $this->_product ? ['<>', 'id', $this->_product->id] : null],
         ];
     }
 
@@ -57,6 +63,8 @@ class ProductEditForm extends CompositeForm
     {
         return [
             'name' => 'Название',
+            'additionalName' => 'Доп. название',
+            'additional_name' => 'Доп. название',
             'code' => 'Артикул',
             'body' => 'Описание',
             'slug' => 'Алиас',
@@ -69,7 +77,7 @@ class ProductEditForm extends CompositeForm
     protected function internalForms()
     {
         return [
-            'categories', 'colors', 'materials', 'sizes'
+            'categories', 'colors', 'materials', 'sizes', 'relates', 'additions',
         ];
     }
 }
