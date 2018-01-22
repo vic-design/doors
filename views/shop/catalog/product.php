@@ -89,12 +89,12 @@ $this->params['active_category'] = $product->category;
 
                 <?php if (!empty($product->box_old_price)): ?>
                 <p class="box-old-price">
-                    <del><?= $product->box_old_price ?></del>
+                    <del><?= $product->box_old_price ?></del> <i class="fa fa-rub"></i>
                 </p>
                 <?php endif; ?>
                 <?php if (!empty($product->old_price)): ?>
                 <p class="old-price">
-                    <del><?= $product->old_price ?></del>
+                    <del><?= $product->old_price ?></del> <i class="fa fa-rub"></i>
                 </p>
                 <?php endif; ?>
                 <p class="price">
