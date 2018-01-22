@@ -16,7 +16,7 @@ $this->registerMetaTag(['name' => 'keywords0', 'content' => '']);
 <?php $this->beginContent('@app/views/layouts/main.php') ?>
 <?= SliderWidget::widget() ?>
 
-<div class="down-menu">
+<!--<div class="down-menu">
     <nav class="navbar navbar-default">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-down-menu-collapse-1" aria-expanded="false">
@@ -28,14 +28,13 @@ $this->registerMetaTag(['name' => 'keywords0', 'content' => '']);
         </div>
         <div class="collapse navbar-collapse" id="bs-down-menu-collapse-1">
             <ul class="nav nav-justified">
-                <li><a href="<?= Url::to(['/stock/page']) ?>">Новости и акции</a></li>
                 <li><a href="#">Оптовикам</a></li>
                 <li><a href="#">Документация</a></li>
                 <li><a href="#">Прайс-листы</a></li>
             </ul>
-        </div><!-- /.navbar-collapse -->
+        </div>
     </nav>
-</div>
+</div>-->
 
 <?= StockWidget::widget() ?>
 

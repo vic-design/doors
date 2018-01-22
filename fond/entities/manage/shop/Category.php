@@ -19,10 +19,13 @@ use yii\db\ActiveRecord;
  * @property int $rgt [int(11)]
  * @property int $depth [int(11)]
  *
- * @property Category parent
- * @property Category next
- * @property Category prev
+ * @property Category $parent
+ * @property Category $next
+ * @property Category $prev
  * @mixin NestedSetsBehavior
+ * @property Category[] $parents
+ * @property Category[] descedants
+ * @property Category[] descendants
  */
 class Category extends ActiveRecord
 {

@@ -110,24 +110,33 @@ body {
   position: relative;
   opacity: 1; }
 
-.down-menu .navbar.navbar-default {
-  background-color: transparent;
-  border: none;
-  border-radius: 0;
-  min-height: 42px; }
-  .down-menu .navbar.navbar-default .collapse.navbar-collapse {
-    padding-left: 0;
-    padding-right: 0; }
-    .down-menu .navbar.navbar-default .collapse.navbar-collapse .nav.nav-justified li a {
-      background-color: #e5004f;
-      color: #ffffff;
-      font-weight: bold;
-      font-size: 16px;
-      border: none;
-      border-radius: 0; }
-      .down-menu .navbar.navbar-default .collapse.navbar-collapse .nav.nav-justified li a:hover, .down-menu .navbar.navbar-default .collapse.navbar-collapse .nav.nav-justified li a.active, .down-menu .navbar.navbar-default .collapse.navbar-collapse .nav.nav-justified li a:focus {
-        background-color: #333333; }
-
+/*.down-menu{
+    .navbar.navbar-default{
+        background-color: transparent;
+        border: none;
+        border-radius: 0;
+        min-height: 42px;
+        .collapse.navbar-collapse{
+            padding-left: 0;
+            padding-right: 0;
+            .nav.nav-justified{
+                li{
+                    a{
+                        background-color: $rose;
+                        color: #ffffff;
+                        font-weight: bold;
+                        font-size: 16px;
+                        border: none;
+                        border-radius: 0;
+                        &:hover, &.active, &:focus{
+                            background-color: $hardGrey;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}*/
 .stocks-block .row {
   margin-left: 15px;
   margin-right: 15px; }
@@ -190,6 +199,80 @@ body {
 div.required label:after {
   content: " *";
   color: red; }
+
+.aside-menu {
+  margin-top: 35px;
+  margin-bottom: 15px; }
+  .aside-menu ul {
+    list-style: outside none none;
+    padding-left: 0; }
+    .aside-menu ul li {
+      margin-bottom: 2px; }
+      .aside-menu ul li a.active, .aside-menu ul li a:hover, .aside-menu ul li a:focus {
+        background-color: #e5004f;
+        border: 1px solid #e5004f;
+        border-radius: 4px 4px 0 0; }
+        .aside-menu ul li a.active i, .aside-menu ul li a:hover i, .aside-menu ul li a:focus i {
+          color: #333333; }
+      .aside-menu ul li ul li {
+        margin-bottom: 0; }
+        .aside-menu ul li ul li a.active, .aside-menu ul li ul li a:hover, .aside-menu ul li ul li a:focus {
+          border-radius: 0; }
+        .aside-menu ul li ul li ul li ul li a {
+          text-transform: none;
+          font-weight: bold;
+          padding: 10px 15px 10px 65px; }
+        .aside-menu ul li ul li ul li a {
+          font-size: 12px;
+          text-transform: uppercase;
+          padding: 10px 15px 10px 45px; }
+        .aside-menu ul li ul li a {
+          font-weight: normal;
+          border-radius: 0;
+          font-size: 14px;
+          padding: 10px 15px 10px 25px; }
+      .aside-menu ul li a {
+        padding: 10px 15px;
+        background-color: #2850a0;
+        color: #ffffff;
+        font-weight: bold;
+        font-size: 16px;
+        border: 1px solid #2850a0;
+        border-radius: 4px;
+        display: block;
+        position: relative; }
+
+.subcategories .panel-body .row .col-sm-3 {
+  padding: 10px; }
+  .subcategories .panel-body .row .col-sm-3 div {
+    border: 1px solid #818181;
+    border-radius: 5px;
+    padding: 10px 15px;
+    height: 60px; }
+
+.product-panel .product-layout {
+  height: 370px; }
+  .product-panel .product-layout .product-image img {
+    margin: 0 auto 7px; }
+  .product-panel .product-layout .product-caption .product-caption-name {
+    margin-bottom: 5px; }
+    .product-panel .product-layout .product-caption .product-caption-name h4 {
+      height: 45px; }
+  .product-panel .product-layout .product-caption .product-caption-description {
+    font-size: 13px;
+    height: 55px;
+    margin-bottom: 5px; }
+  .product-panel .product-layout .product-caption .product-caption-price {
+    font-size: 24px;
+    color: #333333;
+    font-weight: bold; }
+
+.catalog-product .product-reviews .row {
+  margin-bottom: 15px; }
+  .catalog-product .product-reviews .row .price {
+    font-size: 24px;
+    color: #333333;
+    font-weight: bold; }
 
 /* FOOTER */
 .footer-push {

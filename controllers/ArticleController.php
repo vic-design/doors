@@ -10,7 +10,7 @@ class ArticleController extends Controller
 {
     public function actionNode($slug)
     {
-        $this->layout = 'content';
+        $this->layout = 'catalog';
         $article = Article::find()->andWhere(['slug' => $slug])->andWhere(['status' => 1])->one();
 
         return $this->render('node', [

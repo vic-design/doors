@@ -8,9 +8,10 @@ use yii\web\Controller;
 
 class StockController extends Controller
 {
+    public $layout = 'catalog';
+
     public function actionPage()
     {
-        $this->layout = 'content';
         $stocks = Stock::find()->andWhere(['status' => 1])->orderBy(['created_at' => SORT_DESC])->all();
 
         return $this->render('page', [
@@ -20,7 +21,6 @@ class StockController extends Controller
 
     public function actionNode($slug)
     {
-        $this->layout = 'content';
         $stock = Stock::find()->andWhere(['status' => 1])->andWhere(['slug' => $slug])->one();
 
         return $this->render('node', [

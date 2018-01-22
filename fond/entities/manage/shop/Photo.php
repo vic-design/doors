@@ -61,7 +61,8 @@ class Photo extends ActiveRecord
                 'thumbs' => [
                     'admin' => ['width' => 140, 'height' => 330],
                     'mini' => ['width' => 50, 'height' => 120],
-                    'full' => ['width' => 1000, 'height' => 1000]
+                    'full' => ['width' => 1000, 'height' => 1000],
+                    'list' => ['width' => 100, 'height' => 150],
                 ],
             ],
 

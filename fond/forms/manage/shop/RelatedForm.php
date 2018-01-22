@@ -6,7 +6,7 @@ namespace app\fond\forms\manage\shop;
 use app\fond\entities\manage\shop\Category;
 use app\fond\entities\manage\shop\Product;
 use yii\base\Model;
-use yii\helpers\ArrayHelper;use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 
 class RelatedForm extends Model
 {

@@ -50,6 +50,7 @@ use yii\web\UploadedFile;
  * @property float $weight [float]
  *
  * @property CategoryAssignment[] $categoryAssignments
+ * @property Category $category
  * @property Photo[] photos
  * @property Photo $mainPhoto
  * @property ColorAssignment[] $colorAssignments

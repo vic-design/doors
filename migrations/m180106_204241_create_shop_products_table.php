@@ -46,7 +46,7 @@ class m180106_204241_create_shop_products_table extends Migration
         $this->createIndex('{{%idx-shop_products-slug}}', '{{%shop_products}}', 'slug', true);
         $this->createIndex('{{%idx-shop_products-main-photo}}', '{{%shop_products}}', 'main_photo_id');
 
-        $this->addForeignKey('{{%fk-shop_products-category-id-id}}', '{{%shop_products}}', 'category_id', '{{%shop_categories}}', 'id');
+        $this->addForeignKey('{{%fk-shop_products-catalog-id-id}}', '{{%shop_products}}', 'category_id', '{{%shop_categories}}', 'id');
     }
 
     /**

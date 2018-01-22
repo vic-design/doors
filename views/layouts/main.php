@@ -81,7 +81,8 @@ LtAppAsset::register($this);
                     <ul class="nav nav-justified">
                         <li><a href="<?= Url::home() ?>">Главная</a></li>
                         <li><a href="<?= Url::to(['/article/node', 'slug' => 'o-kompanii']) ?>">О компании</a></li>
-                        <li><a href="#">Каталог</a></li>
+                        <li><a href="<?= Url::to(['/shop/catalog/index']) ?>">Каталог</a></li>
+                        <li><a href="<?= Url::to(['/stock/page']) ?>">Новости и акции</a></li>
                         <li><a href="<?= Url::to(['/article/node', 'slug' => 'kontakty']) ?>">Контакты</a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->

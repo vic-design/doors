@@ -22,10 +22,10 @@ class m180107_090821_create_shop_category_assignments_table extends Migration
         $this->addPrimaryKey('{{%pk-shop_category_assignments}}', '{{%shop_category_assignments}}', ['product_id', 'category_id']);
 
         $this->createIndex('{{%idx-shop_category_assignments-product-id}}', '{{%shop_category_assignments}}', 'product_id');
-        $this->createIndex('{{%idx-shop_category_assignments-category-id}}', '{{%shop_category_assignments}}', 'category_id');
+        $this->createIndex('{{%idx-shop_category_assignments-catalog-id}}', '{{%shop_category_assignments}}', 'category_id');
 
         $this->addForeignKey('{{%fk-shop_category_assignments-product-id-id}}', '{{%shop_category_assignments}}', 'product_id', '{{%shop_products}}', 'id', 'CASCADE', 'RESTRICT');
-        $this->addForeignKey('{{%fk-shop_category_assignments-category-id-id}}', '{{%shop_category_assignments}}', 'category_id', '{{%shop_categories}}', 'id', 'CASCADE', 'RESTRICT');
+        $this->addForeignKey('{{%fk-shop_category_assignments-catalog-id-id}}', '{{%shop_category_assignments}}', 'category_id', '{{%shop_categories}}', 'id', 'CASCADE', 'RESTRICT');
     }
 
     /**
