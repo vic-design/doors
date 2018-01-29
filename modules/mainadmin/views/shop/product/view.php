@@ -87,10 +87,10 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
     <div class="box" id="modifications">
-        <div class="box-header with-border">Модификации товара</div>
+        <div class="box-header with-border">Модели товара</div>
         <div class="box-body">
             <p>
-                <?= Html::a('Добавить модификацию', ['shop/modification/create', 'productId' => $product->id], ['class' => 'btn btn-primary']) ?>
+                <?= Html::a('Добавить модель', ['shop/modification/create', 'productId' => $product->id], ['class' => 'btn btn-primary']) ?>
             </p>
             <?= GridView::widget([
                 'dataProvider' => $modificationsProvider,

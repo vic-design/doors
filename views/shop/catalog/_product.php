@@ -37,8 +37,8 @@ $url = Url::to(['product', 'slug' => $product->slug]);
         <p class="product-caption-price text-center">
             <?= $product->price ?> <i class="fa fa-rub"></i>
         </p>
-        <button type="button" class="btn btn-primary" href="<?= Url::to(['/shop/cart/add', 'id' => $product->id]) ?>" data-method="post">
+        <a class="btn btn-primary shopping-button" href="<?= Url::to(['/shop/cart/add', 'id' => $product->id]) ?>">
             <i class="fa fa-shopping-cart hidden-xs"></i> &nbsp;&nbsp; Добавить в корзину
-        </button>
+        </a>
     </div>
 </div>

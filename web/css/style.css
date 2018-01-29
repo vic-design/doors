@@ -58,6 +58,8 @@ body {
     font-size: 18px;
     font-weight: bold;
     color: #b9b9b9; }
+    .header .header-banner .cart {
+      color: #000; }
   .header .header-right div:first-child {
     margin-bottom: 5px; }
     .header .header-right div:first-child img {
@@ -248,7 +250,9 @@ div.required label:after {
     border: 1px solid #818181;
     border-radius: 5px;
     padding: 10px 15px;
-    height: 60px; }
+    height: 60px;
+    -ms-word-break: break-all;
+    word-break: break-all; }
 
 .product-panel .product-layout {
   height: 370px; }
@@ -274,6 +278,20 @@ div.required label:after {
     color: #333333;
     font-weight: bold; }
 
+.alert-block .alert {
+  margin-bottom: 0 !important; }
+
+#cart .dropdown-menu {
+  width: 350%; }
+  #cart .dropdown-menu .td-image img {
+    max-height: 50px; }
+
+.td-image img {
+  max-height: 50px; }
+
+.shopping-cart-index {
+  padding-bottom: 15px; }
+
 /* FOOTER */
 .footer-push {
   height: 190px; }
@@ -296,7 +314,14 @@ div.required label:after {
 /* ADAPTIVE SETTINGS */
 @media screen and (max-width: 1200px) {
   .header .header-banner {
-    font-size: 16px; } }
+    font-size: 16px; }
+
+  #cart .dropdown-menu {
+    float: none !important;
+    left: -110%; }
+
+  .aside-menu ul li a {
+    font-size: 14px; } }
 @media screen and (max-width: 993px) {
   .header .header-banner {
     font-size: 11px; }
@@ -319,7 +344,19 @@ div.required label:after {
     font-size: 10px; }
 
   .down-menu .navbar.navbar-default .collapse.navbar-collapse .nav.nav-justified li a {
-    font-size: 14px; } }
+    font-size: 14px; }
+
+  .subcategories .panel-body .row .col-sm-3 div {
+    height: 75px; }
+
+  .aside-menu ul li a {
+    font-size: 10px; }
+
+  .top-menu .navbar.navbar-default .collapse.navbar-collapse .nav.nav-justified li a {
+    font-size: 14px; }
+
+  #cart .dropdown-menu {
+    left: -140%; } }
 @media screen and (max-width: 768px) {
   .footer-contact {
     text-align: center; }
@@ -328,6 +365,15 @@ div.required label:after {
     font-size: 14px; }
 
   .down-menu .navbar.navbar-default .collapse.navbar-collapse .nav.nav-justified li a {
-    font-size: 16px; } }
+    font-size: 16px; }
+
+  .top-menu .navbar.navbar-default .collapse.navbar-collapse .nav.nav-justified li a {
+    font-size: 18px; }
+
+  .navbar-toggle {
+    background-color: #dddddd; }
+
+  .aside-menu ul li a {
+    font-size: 14px; } }
 
 /*# sourceMappingURL=style.css.map */

@@ -28,6 +28,13 @@ $('ul.nav > li').hover(function() {
     $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut();
 });
 
+$('.shopping-button').click(function (e) {
+    e.preventDefault();
+    var modal = $('#basketModal');
+    modal.modal('show');
+    modal.find('#modal-content').load($(this).attr('href'));
+});
+
 $('.backCall').click(function (e) {
     e.preventDefault();
     var modal = $('#msgModal');

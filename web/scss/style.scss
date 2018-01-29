@@ -83,6 +83,9 @@ body{
         font-size: 18px;
         font-weight: bold;
         color: $lightGrey;
+        .cart{
+            color: #000;
+        }
     }
     .header-right{
         div:first-child{
@@ -343,6 +346,8 @@ div.required label:after {
                     border-radius: 5px;
                     padding:  10px 15px;
                     height: 60px;
+                    -ms-word-break: break-all;
+                    word-break: break-all;
                 }
             }
         }
@@ -390,6 +395,29 @@ div.required label:after {
         }
     }
 }
+.alert-block{
+    .alert{
+        margin-bottom: 0!important;
+    }
+}
+#cart{
+    .dropdown-menu{
+        width: 350%;
+        .td-image{
+            img{
+                max-height: 50px;
+            }
+        }
+    }
+}
+.td-image{
+    img{
+        max-height: 50px;
+    }
+}
+.shopping-cart-index{
+    padding-bottom: 15px;
+}
 
 
 /* FOOTER */
@@ -423,6 +451,13 @@ div.required label:after {
     .header .header-banner{
         font-size: 16px;
     }
+    #cart .dropdown-menu{
+        float: none!important;
+        left: -110%;
+    }
+    .aside-menu ul li a{
+        font-size: 14px;
+    }
 }
 
 @media screen and (max-width: 993px){
@@ -453,6 +488,18 @@ div.required label:after {
     .down-menu .navbar.navbar-default .collapse.navbar-collapse .nav.nav-justified li a{
         font-size: 14px;
     }
+    .subcategories .panel-body .row .col-sm-3 div{
+        height: 75px;
+    }
+    .aside-menu ul li a{
+        font-size: 10px;
+    }
+    .top-menu .navbar.navbar-default .collapse.navbar-collapse .nav.nav-justified li a{
+        font-size: 14px;
+    }
+    #cart .dropdown-menu{
+        left: -140%;
+    }
 }
 
 @media screen and (max-width: 768px){
@@ -464,5 +511,14 @@ div.required label:after {
     }
     .down-menu .navbar.navbar-default .collapse.navbar-collapse .nav.nav-justified li a{
         font-size: 16px;
+    }
+    .top-menu .navbar.navbar-default .collapse.navbar-collapse .nav.nav-justified li a{
+        font-size: 18px;
+    }
+    .navbar-toggle{
+        background-color: #dddddd;
+    }
+    .aside-menu ul li a{
+        font-size: 14px;
     }
 }

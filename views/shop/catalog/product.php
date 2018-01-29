@@ -58,7 +58,7 @@ $this->params['active_category'] = $product->category;
                     </div>
                 </div>
                 <?php if ($product->modifications): ?>
-                    <h3>Варианты товара</h3>
+                    <h3>Модели товара</h3>
                 <?php endif; ?>
                 <div class="row">
                     <?php foreach ($product->modifications as $modification): ?>

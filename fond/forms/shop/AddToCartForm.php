@@ -26,7 +26,7 @@ class AddToCartForm extends Model
     public function rules()
     {
         return array_filter([
-            $this->_product->modifications ? ['modification', 'safe'] : false,
+            $this->_product->modifications ? ['modification', 'integer'] : false,
             $this->_product->sizes ? ['size', 'required'] : false,
             ['quantity', 'required'],
             ['quantity', 'integer', 'min' => 1],
@@ -36,7 +36,7 @@ class AddToCartForm extends Model
     public function attributeLabels()
     {
         return [
-            'modification' => 'Выбрать вариант товара',
+            'modification' => 'Выбрать модель товара',
             'quantity' => 'Количество',
             'size' => 'Выбрать размер',
         ];

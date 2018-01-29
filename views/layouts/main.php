@@ -8,6 +8,7 @@ use app\assets\AppAsset;
 use app\assets\LtAppAsset;
 use app\widgets\Alert;
 use yii\bootstrap\Modal;
+use app\widgets\CartWidget;
 
 AppAsset::register($this);
 LtAppAsset::register($this);
@@ -50,12 +51,15 @@ LtAppAsset::register($this);
                     <?= Html::a(Html::img(Yii::getAlias('@web/files/default/logo.png'), ['alt' => 'На главную', 'class' => 'img-responsive']), Url::home()) ?>
                 </div>
             </div>
-            <div class="header-banner col-sm-4 text-center">
+            <div class="header-banner col-sm-5 text-center">
                 Производство и продажа
                 красивых и качественных
                 входных и межкомнатных дверей
+                <div class="cart">
+                    <?= CartWidget::widget() ?>
+                </div>
             </div>
-            <div class="header-right col-sm-3 col-sm-offset-1">
+            <div class="header-right col-sm-3">
                 <div class="text-center">
                     <?= Html::img(Yii::getAlias('@web/files/default/clock.png'), ['alt' => 'Image', 'class' => 'xs-hidden']) ?>
                     Пн-пт 09:00 - 18:00 <br>
@@ -138,6 +142,18 @@ Modal::begin([
         'header' => '<h4>Вызвать замерщика</h4>',
         'size' => 'modal-sm',
         'clientOptions' => false
+])
+?>
+<div id="modal-content"></div>
+<?php Modal::end() ?>
+
+<?php
+Modal::begin([
+    'id' => 'basketModal',
+    'headerOptions' => ['id' => 'modal-header'],
+    'header' => '<h4>Добавить в корзину</h4>',
+    'size' => 'modal-lg',
+    'clientOptions' => false
 ])
 ?>
 <div id="modal-content"></div>
