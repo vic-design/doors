@@ -93,6 +93,7 @@ $config = [
             'rules' => [
                 'mainadmin' => 'mainadmin/default/index',
                 'novosti-i-akcii' => 'stock/page',
+                'catalog' => 'shop/catalog/index',
                 '<slug:[\w\-_]+>' => 'shop/catalog/product',
                 'info/<slug:[\w\-_]+>' => 'article/node',
                 'novosti-i-akcii/<slug:[\w\-_]+>' => 'stock/node',
