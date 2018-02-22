@@ -40,7 +40,7 @@ class CategoryWidget extends Widget
                 }
             }
             echo '<li>';
-            echo Html::a(Html::encode($category->name).$suffix, ['/shop/catalog/category', 'id' => $category->id], ['class' => $active ? 'active' : null, 'title' => $category->name]);
+            echo Html::a(Html::encode($category->name).$suffix, ['/shop/catalog/category', 'slug' => $category->slug], ['class' => $active ? 'active' : null, 'title' => $category->name]);
             $level = $category->depth;
         }
         for ($i = $level; $i; $i--){

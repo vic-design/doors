@@ -18,10 +18,10 @@ $this->registerMetaTag(['name' => 'keywords', 'content' => $product->keywords]);
 
 foreach ($product->category->parents as $parent){
     if (!$parent->isRoot()){
-        $this->params['breadcrumbs'][] = ['label' => $parent->name, 'url' => ['category', 'id' => $parent->id]];
+        $this->params['breadcrumbs'][] = ['label' => $parent->name, 'url' => ['category', 'slug' => $parent->slug]];
     }
 }
-$this->params['breadcrumbs'][] = ['label' => $product->category->name, 'url' => ['category', 'id' => $product->category->id]];
+$this->params['breadcrumbs'][] = ['label' => $product->category->name, 'url' => ['category', 'slug' => $product->category->slug]];
 $this->params['breadcrumbs'][] = $product->name;
 
 $this->params['active_category'] = $product->category;

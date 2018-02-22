@@ -18,11 +18,13 @@ class SetUp implements BootstrapInterface
             'editorOptions' => ElFinder::ckeditorOptions('elfinder'),
         ]);
 
-        $container->setSingleton(Cart::class, function () use ($app){
-           return new Cart(
-               new CookieStorage('cart', 3600 * 24),
-               new SimpleCost()
-           );
+        $container->setSingleton(Cart::class, function () use ($app) {
+            return new Cart(
+                new CookieStorage('cart', 3600 * 24),
+                new SimpleCost()
+            );
         });
+
+
     }
 }

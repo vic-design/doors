@@ -51,6 +51,7 @@ $config = [
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
+            'cachePath' => '@runtime/cache',
         ],
         'user' => [
             'identityClass' => 'app\fond\entities\User',
@@ -88,11 +89,14 @@ $config = [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'cache' => false,
             'rules' => [
                 'mainadmin' => 'mainadmin/default/index',
                 'novosti-i-akcii' => 'stock/page',
-                '<slug:[\w\-_]+>' => 'article/node',
-                'novosti-i-akcii/<slug:[\w\-_]+>' => 'stock/node'
+                '<slug:[\w\-_]+>' => 'shop/catalog/product',
+                'info/<slug:[\w\-_]+>' => 'article/node',
+                'novosti-i-akcii/<slug:[\w\-_]+>' => 'stock/node',
+                'category/<slug:[\w\-_]+>' => 'shop/catalog/category'
             ],
         ],
 

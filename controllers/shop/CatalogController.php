@@ -41,9 +41,9 @@ class CatalogController extends Controller
         ]);
     }
 
-    public function actionCategory($id)
+    public function actionCategory($slug)
     {
-        if (!$category = $this->categories->findById($id)){
+        if (!$category = $this->categories->findBySlug($slug)){
             throw new NotFoundHttpException('Запрашиваемая страница не найдена.');
         }
         $dataProvider = $this->products->getAllByCategory($category);

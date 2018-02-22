@@ -12,7 +12,7 @@ use yii\helpers\Url;
                 <?php foreach ($category->children as $child): ?>
                 <div class="col-sm-3 text-center">
                     <div>
-                        <a href="<?= Html::encode(Url::to(['/shop/catalog/category', 'id' => $child->id])) ?>">
+                        <a href="<?= Html::encode(Url::to(['/shop/catalog/category', 'slug' => $child->slug])) ?>">
                             <?= $child->name ?>
                         </a>
                     </div>
