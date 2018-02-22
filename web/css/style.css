@@ -282,7 +282,8 @@ div.required label:after {
   margin-bottom: 0 !important; }
 
 #cart .dropdown-menu {
-  width: 350%; }
+  width: 400%;
+  right: -50%; }
   #cart .dropdown-menu .td-image img {
     max-height: 50px; }
 
@@ -318,7 +319,7 @@ div.required label:after {
 
   #cart .dropdown-menu {
     float: none !important;
-    left: -110%; }
+    left: -150%; }
 
   .aside-menu ul li a {
     font-size: 14px; } }
@@ -356,7 +357,8 @@ div.required label:after {
     font-size: 14px; }
 
   #cart .dropdown-menu {
-    left: -140%; } }
+    left: -145%;
+    width: 355%; } }
 @media screen and (max-width: 768px) {
   .footer-contact {
     text-align: center; }
@@ -374,6 +376,10 @@ div.required label:after {
     background-color: #dddddd; }
 
   .aside-menu ul li a {
-    font-size: 14px; } }
+    font-size: 14px; }
+
+  #cart .dropdown-menu {
+    left: -10%;
+    width: 355%; } }
 
 /*# sourceMappingURL=style.css.map */

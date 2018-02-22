@@ -25,6 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <th class="text-left" style="width: 100px"></th>
                 <th class="text-left">Название</th>
                 <th class="text-left">Модель</th>
+                <th class="text-left">Размер</th>
                 <th class="text-left">Количество</th>
                 <th class="text-right">Стоимость</th>
                 <th class="text-right">Всего</th>
@@ -35,6 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php
                     $product = $item->getProduct();
                     $modification = $item->getModification();
+                    $size = $item->getSize();
                     $url = ['/shop/catalog/product', 'slug' => $product->slug];
                 ?>
             <tr>
@@ -59,6 +61,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?= $modification->additional_name ?>
                     <?php else: ?>
                         <?= $product->additional_name ?>
+                    <?php endif; ?>
+                </td>
+                <td class="text-left">
+                    <?php if ($size): ?>
+                        <?= $size ?>
                     <?php endif; ?>
                 </td>
                 <td class="text-left">

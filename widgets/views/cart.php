@@ -28,6 +28,7 @@ use yii\helpers\Url;
                         <?php
                         $product = $item->getProduct();
                         $modification = $item->getModification();
+                        $size = $item->getSize();
                         $url = ['/shop/catalog/product', 'slug' => $product->slug];
                         ?>
                     <tr>
@@ -52,6 +53,11 @@ use yii\helpers\Url;
                                 <?= $modification->additional_name ?>
                             <?php else: ?>
                                 <?= $product->additional_name ?>
+                            <?php endif; ?>
+                        </td>
+                        <td class="text-left">
+                            <?php if ($size): ?>
+                                <?= $size ?> см
                             <?php endif; ?>
                         </td>
                         <td class="text-right">x <?= $item->getQuantity() ?></td>

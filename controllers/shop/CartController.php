@@ -65,21 +65,11 @@ class CartController extends Controller
     {
         if (!$product = $this->products->find($id)){
             throw new NotFoundHttpException('Запрашиваемая страница не найдена.');
-        }/*
-        if (!$product->modifications){
-            try{
-                $this->service->add($product->id, null, $quantity);
-                Yii::$app->session->setFlash('success', 'Товар добавлен в корзину.');
-                return $this->redirect(Yii::$app->request->referrer);
-            }catch (\DomainException $e){
-                Yii::$app->errorHandler->logException($e);
-                Yii::$app->session->setFlash('error', $e->getMessage());
-            }
-        }*/
+        }
         $form = new AddToCartForm($product);
         if ($form->load(Yii::$app->request->post()) && $form->validate()){
             try{
-                $this->service->add($product->id, $form->modification ? : null, $form->quantity);
+                $this->service->add($product->id, $form->modification ? : null, $form->size ?: null, $form->quantity);
                 return $this->redirect(Yii::$app->request->referrer);
             }catch (\DomainException $e){
                 Yii::$app->errorHandler->logException($e);

@@ -51,6 +51,6 @@ class AddToCartForm extends Model
 
     public function sizeList(): array
     {
-        return ArrayHelper::map($this->_product->sizes, 'id', 'name');
+        return array_combine(ArrayHelper::getColumn($this->_product->sizes, 'name'), ArrayHelper::getColumn($this->_product->sizes, 'name'));
     }
 }

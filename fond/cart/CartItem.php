@@ -10,12 +10,14 @@ class CartItem
 {
     private $product;
     private $modificationId;
+    private $size;
     private $quantity;
 
-    public function __construct(Product $product, $modificationId, $quantity)
+    public function __construct(Product $product, $modificationId, $size, $quantity)
     {
         $this->product = $product;
         $this->modificationId = $modificationId;
+        $this->size = $size;
         $this->quantity = $quantity;
     }
 
@@ -47,6 +49,11 @@ class CartItem
         return null;
     }
 
+    public function getSize(): ?string
+    {
+        return $this->size;
+    }
+
     public function getQuantity(): int
     {
         return $this->quantity;
@@ -72,11 +79,11 @@ class CartItem
 
     public function plus($quantity)
     {
-        return new static($this->product, $this->modificationId, $this->quantity + $quantity);
+        return new static($this->product, $this->modificationId, $this->size, $this->quantity + $quantity);
     }
 
     public function changeQuantity($quantity)
     {
-        return new static($this->product, $this->modificationId, $quantity);
+        return new static($this->product, $this->modificationId, $this->size, $quantity);
     }
 }

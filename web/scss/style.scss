@@ -402,7 +402,8 @@ div.required label:after {
 }
 #cart{
     .dropdown-menu{
-        width: 350%;
+        width: 400%;
+        right: -50%;
         .td-image{
             img{
                 max-height: 50px;
@@ -453,7 +454,7 @@ div.required label:after {
     }
     #cart .dropdown-menu{
         float: none!important;
-        left: -110%;
+        left: -150%;
     }
     .aside-menu ul li a{
         font-size: 14px;
@@ -498,7 +499,8 @@ div.required label:after {
         font-size: 14px;
     }
     #cart .dropdown-menu{
-        left: -140%;
+        left: -145%;
+        width: 355%;
     }
 }
 
@@ -520,5 +522,9 @@ div.required label:after {
     }
     .aside-menu ul li a{
         font-size: 14px;
+    }
+    #cart .dropdown-menu{
+        left: -10%;
+        width: 355%;
     }
 }

@@ -15,6 +15,8 @@ use yiidreamteam\upload\ImageUploadBehavior;
  * @property string $code [varchar(255)]
  * @property int $price [int(11)]
  * @property string $photo [varchar(255)]
+ *
+ * @mixin ImageUploadBehavior
  */
 class Modification extends ActiveRecord
 {

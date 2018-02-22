@@ -19,11 +19,10 @@
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
                     ['label' => 'Меню администратора', 'options' => ['class' => 'header']],
+                    ['label' => 'Заказы', 'icon' => 'shopping-basket', 'url' => ['/mainadmin/order']],
                     ['label' => 'Сайт', 'icon' => 'folder', 'items' => [
                         ['label' => 'Статьи', 'icon' => 'clone', 'url' => ['/mainadmin/article']],
                         ['label' => 'Слайдеры', 'icon' => 'camera', 'url' => ['/mainadmin/slider']],
-                        ['label' => 'Сообщения', 'icon' => 'envelope', 'url' => ['/mainadmin/message']],
-                        ['label' => 'Заказы звонка', 'icon' => 'phone', 'url' => ['/mainadmin/call']],
                         ['label' => 'Акции и новости', 'icon' => 'money', 'url' => ['/mainadmin/stock']],
                     ]],
                     ['label' => 'Магазин', 'icon' => 'shopping-bag', 'items' => [
@@ -33,6 +32,8 @@
                         ['label' => 'Размеры', 'icon' => 'exchange', 'url' => ['/mainadmin/shop/size/index']],
                         ['label' => 'Товары', 'icon' => 'bank', 'url' => ['/mainadmin/shop/product/index']],
                     ]],
+                    ['label' => 'Сообщения', 'icon' => 'envelope', 'url' => ['/mainadmin/message']],
+                    ['label' => 'Заказы звонка', 'icon' => 'phone', 'url' => ['/mainadmin/call']],
                     /*['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                     [
