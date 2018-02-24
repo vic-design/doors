@@ -1,12 +1,16 @@
+<?php
+/* @var $this \yii\web\View */
+
+$this->title = 'Главная';
+
+?>
+
 <div class="mainadmin-default-index">
-    <h1><?= $this->context->action->uniqueId ?></h1>
+    <h1>Здравствуйте <small><?= Yii::$app->user->identity['username'] ?></small> </h1>
     <p>
-        This is the view content for action "<?= $this->context->action->id ?>".
-        The action belongs to the controller "<?= get_class($this->context) ?>"
-        in the "<?= $this->context->module->id ?>" module.
+        Все готово!
     </p>
     <p>
-        You may customize this page by editing the following file:<br>
-        <code><?= __FILE__ ?></code>
+        Желаю приятной работы!
     </p>
 </div>
