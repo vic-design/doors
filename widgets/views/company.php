@@ -9,9 +9,9 @@ use yii\helpers\StringHelper;
 <div class="company">
     <h2>О компании</h2>
     
-    <?= strip_tags(StringHelper::truncateWords($company->body, 150)) ?>
+    <?= strip_tags(StringHelper::truncateWords($company->body, 30)) ?>
     
-    <p>
+    <p><br><br>
         <a href="<?= Url::to(['/article/node', 'slug' => 'o-kompanii']) ?>">
             Читать полностью ...
         </a>
