@@ -67,7 +67,7 @@ $config = [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.timeweb.ru',
                 'username' => 'info@abutan.tmweb.ru',
-                'password' => '19abutan66',
+                'password' => '',
                 'port' => '465',
                 'encryption' => 'ssl',
             ],
