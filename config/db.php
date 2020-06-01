@@ -2,9 +2,9 @@
 
 return [
     'class' => 'yii\db\Connection',
-    // 'dsn' => 'mysql:host=localhost;dbname=wind2015_doors',
-    // 'username' => 'wind2015_doors',
-    // 'password' => '19abutan66',
+    // 'dsn' => 'mysql:host=mysql102.1gb.ru;dbname=dveri-vsem',
+    // 'username' => 'gb_dveri_vsem',
+    // 'password' => '33aa43c6cnmz',
     'dsn' => 'mysql:host=localhost;dbname=doors',
     'username' => 'root',
     'password' => '',
