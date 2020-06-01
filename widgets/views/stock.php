@@ -7,6 +7,7 @@ use yii\helpers\Html;
 ?>
 
 <div class="stocks-block">
+    <?php if($stocks) { ?>
     <div class="row">
         <div class="col-sm-4">
             <h2>Новости и акции</h2>
@@ -35,4 +36,5 @@ use yii\helpers\Html;
         </div>
         <?php endforeach; ?>
     </div>
+    <?php } else { ?><br/><?php } ?>
 </div>

@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\fond\entities\User;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -61,6 +62,11 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        //$user = new User;
+        //$user->username = 'admin';
+        //$user->password = Yii::$app->getSecurity()->generatePasswordHash('12345qwe');
+        //$user->save();
+
         $this->layout = 'home';
 
         return $this->render('index');
