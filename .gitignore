@@ -29,7 +29,3 @@ tests/_support/_generated
 scss/style.scss
 
 runtime
-/web/files/color/cache/*
-/web/files/modifications/cache/*
-/web/files/product/cache/*
-/web/files/sliders/cache/*
