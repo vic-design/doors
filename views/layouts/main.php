@@ -17,12 +17,15 @@ LtAppAsset::register($this);
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
-    <meta charset="<?= Yii::$app->charset ?>">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
     <title>РД-ТРЕЙДИНГ | <?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    <meta charset="<?= Yii::$app->charset ?>">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Производство и продажа красивых и качественных входных и межкомнатных дверей">
+    <meta name="keywords" content="Экошпонированные, ПВХ, шпонированые, двери и арки, купить в ростове, купить двери в ростове, межкомнатные двери и арки купить в ростове, двери а арки в экошпоне купить в ростове, арки и двери любых размеров купить в ростове, изготовление дверей и арок в ростове, двери и арки с доставкой по ростову и области, недорогие двери и арки купить с доставкой">
+    <meta name=”robots” content="index, follow">
 </head>
 <body>
 <?php $this->beginBody() ?>

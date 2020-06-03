@@ -9,8 +9,6 @@ use app\widgets\CompanyWidget;
 use app\widgets\MapWidget;
 
 $this->title = 'Главная';
-$this->registerMetaTag(['name' => 'description', 'content' => '']);
-$this->registerMetaTag(['name' => 'keywords0', 'content' => '']);
 ?>
 
 <?php $this->beginContent('@app/views/layouts/main.php') ?>
