@@ -16,8 +16,8 @@ $this->title = $product->title ?: $product->name;
 $this->registerMetaTag(['name' => 'description', 'content' => $product->description]);
 $this->registerMetaTag(['name' => 'keywords', 'content' => $product->keywords]);
 
-foreach ($product->category->parents as $parent){
-    if (!$parent->isRoot()){
+foreach ($product->category->parents as $parent) {
+    if (!$parent->isRoot()) {
         $this->params['breadcrumbs'][] = ['label' => $parent->name, 'url' => ['category', 'slug' => $parent->slug]];
     }
 }
@@ -28,7 +28,9 @@ $this->params['active_category'] = $product->category;
 ?>
 
 <div class="catalog-product">
-    <h1><?= Html::encode($product->name) ?> <small><?= Html::encode($product->additional_name) ?></small> </h1>
+    <h1><?= Html::encode($product->name) ?>
+        <small><?= Html::encode($product->additional_name) ?></small>
+    </h1>
 
     <?= Breadcrumbs::widget([
         'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
@@ -37,7 +39,8 @@ $this->params['active_category'] = $product->category;
     <div class="product-reviews">
         <div class="row">
             <div class="col-sm-3">
-                <a href="<?= $product->mainPhoto->getThumbFileUrl('file', 'full') ?>" class="fancybox" rel="gallery-<?= $product->id ?>">
+                <a href="<?= $product->mainPhoto->getThumbFileUrl('file', 'full') ?>" class="fancybox"
+                   rel="gallery-<?= $product->id ?>">
                     <?= Html::img($product->mainPhoto->getThumbFileUrl('file', 'full'), ['alt' => $product->name, 'class' => 'img-responsive']) ?>
                 </a>
             </div>
@@ -48,7 +51,8 @@ $this->params['active_category'] = $product->category;
                             <?php if ($i !== 0): ?>
                                 <div class="col-sm-1">
                                     <div class="product-images">
-                                        <a href="<?= $photo->getThumbFileUrl('file', 'full') ?>" class="fancybox" rel="gallery-<?= $product->id ?>">
+                                        <a href="<?= $photo->getThumbFileUrl('file', 'full') ?>" class="fancybox"
+                                           rel="gallery-<?= $product->id ?>">
                                             <?= Html::img($photo->getThumbFileUrl('file', 'full'), ['alt' => $product->name, 'class' => 'img-responsive']) ?>
                                         </a>
                                     </div>
@@ -88,14 +92,16 @@ $this->params['active_category'] = $product->category;
                 </p>
 
                 <?php if (!empty($product->box_old_price)): ?>
-                <p class="box-old-price">
-                    <del><?= $product->box_old_price ?></del> <i class="fa fa-rub"></i>
-                </p>
+                    <p class="box-old-price">
+                        <del><?= $product->box_old_price ?></del>
+                        <i class="fa fa-rub"></i>
+                    </p>
                 <?php endif; ?>
                 <?php if (!empty($product->old_price)): ?>
-                <p class="old-price">
-                    <del><?= $product->old_price ?></del> <i class="fa fa-rub"></i>
-                </p>
+                    <p class="old-price">
+                        <del><?= $product->old_price ?></del>
+                        <i class="fa fa-rub"></i>
+                    </p>
                 <?php endif; ?>
                 <p class="price">
                     <?= $product->price ?> <i class="fa fa-rub"></i>
@@ -325,7 +331,7 @@ $this->params['active_category'] = $product->category;
                                             <strong>Доступные цвета</strong>
                                         </td>
                                         <td>
-                                            <?= implode(' ', ArrayHelper::getColumn($product->colors, function (Color $color){
+                                            <?= implode(' ', ArrayHelper::getColumn($product->colors, function (Color $color) {
                                                 return Html::img($color->getThumbFileUrl('image', 'admin'));
                                             })) ?>
                                         </td>
@@ -337,7 +343,7 @@ $this->params['active_category'] = $product->category;
                                             <strong>Материал</strong>
                                         </td>
                                         <td>
-                                            <?= implode(', ', ArrayHelper::getColumn($product->materials, function (Material $material){
+                                            <?= implode(', ', ArrayHelper::getColumn($product->materials, function (Material $material) {
                                                 return $material->name;
                                             })) ?>
                                         </td>
@@ -349,8 +355,8 @@ $this->params['active_category'] = $product->category;
                                             <strong>Доступные размеры</strong>
                                         </td>
                                         <td>
-                                            <?= implode(', ', ArrayHelper::getColumn($product->sizes, function (Size $size){
-                                               return $size->name;
+                                            <?= implode(', ', ArrayHelper::getColumn($product->sizes, function (Size $size) {
+                                                return $size->name;
                                             })) ?>
                                         </td>
                                     <?php endif; ?>
@@ -393,7 +399,8 @@ $this->params['active_category'] = $product->category;
                                     <?php foreach ($product->additions as $addition): ?>
                                         <tr>
                                             <td>
-                                                <a href="<?= Url::to(['/shop/catalog/product', 'slug' => $addition->slug]) ?>" target="_blank">
+                                                <a href="<?= Url::to(['/shop/catalog/product', 'slug' => $addition->slug]) ?>"
+                                                   target="_blank">
                                                     <?= $addition->name ?>
                                                 </a>
                                             </td>
@@ -418,7 +425,8 @@ $this->params['active_category'] = $product->category;
                                     <?php foreach ($product->relates as $relate): ?>
                                         <tr>
                                             <td>
-                                                <a href="<?= Url::to(['/shop/catalog/product', 'slug' => $relate->slug]) ?>" target="_blank">
+                                                <a href="<?= Url::to(['/shop/catalog/product', 'slug' => $relate->slug]) ?>"
+                                                   target="_blank">
                                                     <?= $relate->name ?>
                                                 </a>
                                             </td>

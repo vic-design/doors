@@ -23,15 +23,17 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="row">
         <div class="col-sm-6 col-sm-offset-1">
-            <h3><?= $product->name ?> <small><?= $product->additional_name ?></small></h3>
+            <h3><?= $product->name ?>
+                <small><?= $product->additional_name ?></small>
+            </h3>
             <?php $form = ActiveForm::begin() ?>
-                <?php if ($modifications = $model->modificationsList()): ?>
-                    <?= $form->field($model, 'modification')->dropDownList($modifications, ['prompt' => ' -- Выберите -- ']) ?>
-                <?php endif; ?>
+            <?php if ($modifications = $model->modificationsList()): ?>
+                <?= $form->field($model, 'modification')->dropDownList($modifications, ['prompt' => ' -- Выберите -- ']) ?>
+            <?php endif; ?>
             <?php if ($model->sizeList()): ?>
                 <?= $form->field($model, 'size')->dropDownList($model->sizeList(), ['prompt' => ' -- Выбрать --']) ?>
             <?php endif; ?>
-                <?= $form->field($model, 'quantity')->textInput(['type' => 'number', 'min' => 1, 'step' => 1]) ?>
+            <?= $form->field($model, 'quantity')->textInput(['type' => 'number', 'min' => 1, 'step' => 1]) ?>
             <div class="form-group">
                 <?= Html::submitButton('Добавить в корзину', ['class' => 'btn btn-primary btn-lg btn-block']) ?>
             </div>

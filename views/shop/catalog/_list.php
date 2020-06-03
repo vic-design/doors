@@ -5,14 +5,17 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
+
 ?>
 
 <div class="row select-panel">
     <div class="col-sm-4 hidden-xs">
-            <div class="btn-group btn-group-sm">
-                <button type="button" class="btn btn-default  active" id="grid-view" data-toggle="tooltip" title="Просмотр в виде сетки"><i class="fa fa-th"></i></button>
-                <button type="button" class="btn btn-default" id="list-view" data-toggle="tooltip" title="Просмотр списком"><i class="fa fa-th-list"></i></button>
-            </div>
+        <div class="btn-group btn-group-sm">
+            <button type="button" class="btn btn-default  active" id="grid-view" data-toggle="tooltip"
+                    title="Просмотр в виде сетки"><i class="fa fa-th"></i></button>
+            <button type="button" class="btn btn-default" id="list-view" data-toggle="tooltip" title="Просмотр списком">
+                <i class="fa fa-th-list"></i></button>
+        </div>
     </div>
     <div class="col-md-4 col-sm-4">
         <div class="form-group input-group input-group-sm">
@@ -29,7 +32,8 @@ use yii\widgets\LinkPager;
                 $current = Yii::$app->request->get('sort');
                 ?>
                 <?php foreach ($values as $value => $label): ?>
-                    <option value="<?= Html::encode(Url::current(['sort' => $value ? : NULL])) ?>" <?php if ($current == $value): ?>selected="selected" <?php endif ?>>
+                    <option value="<?= Html::encode(Url::current(['sort' => $value ?: NULL])) ?>"
+                            <?php if ($current == $value): ?>selected="selected" <?php endif ?>>
                         <?= $label ?>
                     </option>
                 <?php endforeach; ?>
@@ -47,7 +51,8 @@ use yii\widgets\LinkPager;
                 $current = $dataProvider->getPagination()->getPageSize();
                 ?>
                 <?php foreach ($values as $value): ?>
-                    <option value="<?= Html::encode(Url::current(['per-page' => $value])) ?>" <?php  if ($current == $value): ?>selected="selected" <?php endif; ?>>
+                    <option value="<?= Html::encode(Url::current(['per-page' => $value])) ?>"
+                            <?php if ($current == $value): ?>selected="selected" <?php endif; ?>>
                         <?= $value ?>
                     </option>
                 <?php endforeach; ?>

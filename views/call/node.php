@@ -5,6 +5,7 @@ use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\MaskedInput;
+
 ?>
 
 <?php $form = ActiveForm::begin(['id' => 'measureForm']) ?>
@@ -22,7 +23,7 @@ use yii\widgets\MaskedInput;
     <?= Html::submitButton('Вызвать замерщика', ['class' => 'btn btn-primary']) ?>
 </div>
 
-<?php  ActiveForm::end() ?>
+<?php ActiveForm::end() ?>
 <p>
     <a href="<?= Url::to(['/article/node', 'slug' => 'soglasenie-ob-obrabotke-personalnyh-dannyh']) ?>" target="_blank">
         "Соглашение об обработке персональных данных"

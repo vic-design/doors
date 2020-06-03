@@ -3,8 +3,8 @@
 /* @var $content string */
 
 use app\widgets\CategoryWidget;
-use yii\helpers\Html;
 use yii\helpers\Url;
+
 ?>
 
 <?php $this->beginContent('@app/views/layouts/main.php') ?>
@@ -20,9 +20,12 @@ use yii\helpers\Url;
         </div>
         <div class="sidebar-menu">
             <ul class="nav nav-pills nav-stacked">
-                <li role="presentation"><a href="<?= Url::to(['/article/node', 'slug' => 'optovikam']) ?>">Оптовикам</a></li>
-                <li role="presentation"><a href="<?= Url::to(['/article/node', 'slug' => 'dokumentacia']) ?>">Документация</a></li>
-                <li role="presentation"><a href="<?= Url::to(['/article/node', 'slug' => 'prajs-listy']) ?>">Прайс-листы</a></li>
+                <li role="presentation"><a href="<?= Url::to(['/article/node', 'slug' => 'optovikam']) ?>">Оптовикам</a>
+                </li>
+                <li role="presentation"><a href="<?= Url::to(['/article/node', 'slug' => 'dokumentacia']) ?>">Документация</a>
+                </li>
+                <li role="presentation"><a
+                            href="<?= Url::to(['/article/node', 'slug' => 'prajs-listy']) ?>">Прайс-листы</a></li>
             </ul>
         </div>
     </div>

@@ -59,16 +59,18 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <?= $item->getQuantity() ?>
                             </td>
                             <td class="text-right">
-                                <?= $item->getPrice() ?>  <i class="fa fa-rub" aria-hidden="true"></i>
+                                <?= $item->getPrice() ?> <i class="fa fa-rub" aria-hidden="true"></i>
                             </td>
                             <td class="text-right">
-                                <?= $item->getCost() ?>  <i class="fa fa-rub" aria-hidden="true"></i>
+                                <?= $item->getCost() ?> <i class="fa fa-rub" aria-hidden="true"></i>
                             </td>
                         </tr>
                     <?php endforeach; ?>
                     <tr>
                         <td colspan="5"><strong>ИТОГО</strong></td>
-                        <td class="text-right"><strong><?= $cart->getCost()->getTotal() ?></strong>  <i class="fa fa-rub" aria-hidden="true"></i></td>
+                        <td class="text-right"><strong><?= $cart->getCost()->getTotal() ?></strong> <i class="fa fa-rub"
+                                                                                                       aria-hidden="true"></i>
+                        </td>
                     </tr>
                     </tbody>
                 </table>

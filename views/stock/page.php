@@ -17,25 +17,25 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
     ]) ?>
 
     <?php foreach ($stocks as $stock): ?>
-    <div class="stock-block">
-        <a href="<?= Url::to(['/stock/node', 'slug' => $stock->slug]) ?>">
-            <h2><?= Html::encode($stock->name) ?></h2>
-        </a>
+        <div class="stock-block">
+            <a href="<?= Url::to(['/stock/node', 'slug' => $stock->slug]) ?>">
+                <h2><?= Html::encode($stock->name) ?></h2>
+            </a>
 
-        <p>
-            <?= $stock->start_day ?>
-        </p>
+            <p>
+                <?= $stock->start_day ?>
+            </p>
 
-        <?= $stock->summary ?>
+            <?= $stock->summary ?>
 
-        <p>
-            <a href="<?= Url::to(['/stock/node', 'slug' => $stock->slug]) ?>">Подробнее >>></a>
-        </p>
+            <p>
+                <a href="<?= Url::to(['/stock/node', 'slug' => $stock->slug]) ?>">Подробнее >>></a>
+            </p>
 
-    </div>
+        </div>
     <?php endforeach; ?>
 </div>

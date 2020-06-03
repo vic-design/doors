@@ -5,6 +5,7 @@ use yii\bootstrap\ActiveForm;
 use yii\widgets\MaskedInput;
 use yii\helpers\Html;
 use yii\helpers\Url;
+
 ?>
 
 <?php $form = ActiveForm::begin(['id' => 'messageForm']) ?>
@@ -21,10 +22,13 @@ use yii\helpers\Url;
 <?= $form->field($model, 'body')->textarea(['rows' => 3, 'placeholder' => 'Ваше сообщение']) ?>
 <?= $form->field($model, 'accept')->checkbox() ?>
 <div class="form-group">
-    <?=Html::submitButton('Отправить', ['class' => 'btn btn-primary']) ?>
+    <?= Html::submitButton('Отправить', ['class' => 'btn btn-primary']) ?>
 </div>
 
 <?php ActiveForm::end() ?>
 <p>
-    Нажимая кнопку "ОТПРАВИТЬ", Вы автоматически присоединяетесь к <a href="<?= Url::to(['/article/node', 'slug' => 'soglasenie-ob-obrabotke-personalnyh-dannyh']) ?>" target="_blank">"Соглашению об обработке персональных данных"</a> . Если Вы не согласны, то просто покиньте сайт.
+    Нажимая кнопку "ОТПРАВИТЬ", Вы автоматически присоединяетесь к <a
+            href="<?= Url::to(['/article/node', 'slug' => 'soglasenie-ob-obrabotke-personalnyh-dannyh']) ?>"
+            target="_blank">"Соглашению об обработке персональных данных"</a> . Если Вы не согласны, то просто покиньте
+    сайт.
 </p>

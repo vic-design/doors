@@ -7,11 +7,11 @@ use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 
 $this->title = $category->title ?: $category->name;
-$this->registerMetaTag(['name' => 'description', 'content' => $category->description]);
-$this->registerMetaTag(['name' => 'keywords', 'content' => $category->keywords]);
+if (!empty($category->description)) $this->registerMetaTag(['name' => 'description', 'content' => $category->description]);
+if (!empty($category->keywords)) $this->registerMetaTag(['name' => 'keywords', 'content' => $category->keywords]);
 
-foreach ($category->parents as $parent){
-    if (!$parent->isRoot()){
+foreach ($category->parents as $parent) {
+    if (!$parent->isRoot()) {
         $this->params['breadcrumbs'][] = ['label' => $parent->name, 'url' => ['category', 'slug' => $parent->slug]];
     }
 }
@@ -29,7 +29,7 @@ $this->params['active_category'] = $category;
 
     <?=
     $this->render('_subcategories', [
-            'category' => $category,
+        'category' => $category,
     ])
     ?>
 

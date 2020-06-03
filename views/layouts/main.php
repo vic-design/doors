@@ -24,7 +24,8 @@ LtAppAsset::register($this);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Производство и продажа красивых и качественных входных и межкомнатных дверей">
-    <meta name="keywords" content="Экошпонированные, ПВХ, шпонированые, двери и арки, купить в ростове, купить двери в ростове, межкомнатные двери и арки купить в ростове, двери а арки в экошпоне купить в ростове, арки и двери любых размеров купить в ростове, изготовление дверей и арок в ростове, двери и арки с доставкой по ростову и области, недорогие двери и арки купить с доставкой">
+    <meta name="keywords"
+          content="Экошпонированные, ПВХ, шпонированые, двери и арки, купить в ростове, купить двери в ростове, межкомнатные двери и арки купить в ростове, двери а арки в экошпоне купить в ростове, арки и двери любых размеров купить в ростове, изготовление дверей и арок в ростове, двери и арки с доставкой по ростову и области, недорогие двери и арки купить с доставкой">
     <meta name=”robots” content="index, follow">
 </head>
 <body>
@@ -76,23 +77,24 @@ LtAppAsset::register($this);
     </div><!--header-->
     <div class="top-menu">
         <nav class="navbar navbar-default">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav nav-justified">
-                        <li><a href="<?= Url::home() ?>">Главная</a></li>
-                        <li><a href="<?= Url::to(['/article/node', 'slug' => 'o-kompanii']) ?>">О компании</a></li>
-                        <li><a href="<?= Url::to(['/shop/catalog/index']) ?>">Каталог</a></li>
-                        <li><a href="<?= Url::to(['/stock/page']) ?>">Новости и акции</a></li>
-                        <li><a href="<?= Url::to(['/article/node', 'slug' => 'kontakty']) ?>">Контакты</a></li>
-                    </ul>
-                </div><!-- /.navbar-collapse -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav nav-justified">
+                    <li><a href="<?= Url::home() ?>">Главная</a></li>
+                    <li><a href="<?= Url::to(['/article/node', 'slug' => 'o-kompanii']) ?>">О компании</a></li>
+                    <li><a href="<?= Url::to(['/shop/catalog/index']) ?>">Каталог</a></li>
+                    <li><a href="<?= Url::to(['/stock/page']) ?>">Новости и акции</a></li>
+                    <li><a href="<?= Url::to(['/article/node', 'slug' => 'kontakty']) ?>">Контакты</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
         </nav>
     </div><!--top-menu-->
     <div class="alert-block">
@@ -111,28 +113,28 @@ LtAppAsset::register($this);
             </div>
             <div class="footer-contact col-sm-5 col-sm-offset-2">
                 <p>
-                    <i class="fa fa-map-marker"></i>  Ростов-на-Дону, Орская, д 31в, офис 4
+                    <i class="fa fa-map-marker"></i> Ростов-на-Дону, Орская, д 31в, офис 4
                 </p>
                 <p>
-                    <i class="fa fa-phone"></i>  +7 903 47 24 333  <i class="fa fa-phone"></i>  +7 863 22 15 082
+                    <i class="fa fa-phone"></i> +7 903 47 24 333 <i class="fa fa-phone"></i> +7 863 22 15 082
                 </p>
             </div>
         </div>
     </div>
     <div class="footer-bottom">
         <p class="text-center">
-            &copy;  РД-ТРЕЙДИНГ &nbsp;&nbsp;<?= date('Y') ?>
+            &copy; РД-ТРЕЙДИНГ &nbsp;&nbsp;<?= date('Y') ?>
         </p>
     </div>
 </div><!--footer-->
 
 <?php
 Modal::begin([
-        'id' => 'msgModal',
-        'headerOptions' => ['id' => 'modal-header'],
-        'header' => '<h4>Обратная связь</h4>',
-        'size' => 'modal-lg',
-        'clientOptions' => false
+    'id' => 'msgModal',
+    'headerOptions' => ['id' => 'modal-header'],
+    'header' => '<h4>Обратная связь</h4>',
+    'size' => 'modal-lg',
+    'clientOptions' => false
 ])
 ?>
 <div id="modal-content"></div>
@@ -140,11 +142,11 @@ Modal::begin([
 
 <?php
 Modal::begin([
-        'id' => 'callModal',
-        'headerOptions' => ['id' => 'modal-header'],
-        'header' => '<h4>Вызвать замерщика</h4>',
-        'size' => 'modal-sm',
-        'clientOptions' => false
+    'id' => 'callModal',
+    'headerOptions' => ['id' => 'modal-header'],
+    'header' => '<h4>Вызвать замерщика</h4>',
+    'size' => 'modal-sm',
+    'clientOptions' => false
 ])
 ?>
 <div id="modal-content"></div>

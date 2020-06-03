@@ -12,11 +12,11 @@ $url = Url::to(['product', 'slug' => $product->slug]);
 <div class="product-layout col-sm-4">
     <div class="product-image">
         <?php if ($product->mainPhoto): ?>
-        <div class="product-image">
-            <a href="<?= Html::encode($url) ?>">
-                <?= Html::img($product->mainPhoto->getThumbFileUrl('file', 'list'), ['alt' => $product->name, 'class' => 'img-responsive']) ?>
-            </a>
-        </div>
+            <div class="product-image">
+                <a href="<?= Html::encode($url) ?>">
+                    <?= Html::img($product->mainPhoto->getThumbFileUrl('file', 'list'), ['alt' => $product->name, 'class' => 'img-responsive']) ?>
+                </a>
+            </div>
         <?php endif; ?>
     </div>
     <div class="product-caption text-center">
@@ -24,7 +24,7 @@ $url = Url::to(['product', 'slug' => $product->slug]);
             <h4><?= $product->name ?></h4>
         </a>
         <p class="product-caption-description">
-            <?= strip_tags(StringHelper::truncateWords($product->body, 10) ) ?>
+            <?= strip_tags(StringHelper::truncateWords($product->body, 10)) ?>
         </p>
         <p class="product-caption-old-price text-center">
             <?php if (!empty($product->box_old_price)): ?>

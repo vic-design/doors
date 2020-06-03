@@ -34,63 +34,65 @@ $this->params['breadcrumbs'][] = $this->title;
             <tbody>
             <?php foreach ($cart->getItems() as $item): ?>
                 <?php
-                    $product = $item->getProduct();
-                    $modification = $item->getModification();
-                    $size = $item->getSize();
-                    $url = ['/shop/catalog/product', 'slug' => $product->slug];
+                $product = $item->getProduct();
+                $modification = $item->getModification();
+                $size = $item->getSize();
+                $url = ['/shop/catalog/product', 'slug' => $product->slug];
                 ?>
-            <tr>
-                <td class="text-center td-image">
-                    <?php if (!$modification): ?>
+                <tr>
+                    <td class="text-center td-image">
+                        <?php if (!$modification): ?>
+                            <a href="<?= Url::to($url) ?>">
+                                <?= Html::img($product->mainPhoto->getThumbFileUrl('file', 'full'), ['alt' => $product->name, 'class' => 'img-responsive']) ?>
+                            </a>
+                        <?php else: ?>
+                            <a href="<?= Url::to($url) ?>">
+                                <?= Html::img($modification->getThumbFileUrl('photo', 'full'), ['alt' => $product->name, 'class' => 'img-responsive']) ?>
+                            </a>
+                        <?php endif; ?>
+                    </td>
+                    <td class="text-left">
                         <a href="<?= Url::to($url) ?>">
-                            <?= Html::img($product->mainPhoto->getThumbFileUrl('file', 'full'), ['alt' => $product->name, 'class' => 'img-responsive']) ?>
+                            <?= Html::encode($product->name) ?>
                         </a>
-                    <?php else: ?>
-                        <a href="<?= Url::to($url) ?>">
-                            <?= Html::img($modification->getThumbFileUrl('photo', 'full'), ['alt' => $product->name, 'class' => 'img-responsive']) ?>
-                        </a>
-                    <?php endif; ?>
-                </td>
-                <td class="text-left">
-                    <a href="<?= Url::to($url) ?>">
-                        <?= Html::encode($product->name) ?>
-                    </a>
-                </td>
-                <td class="text-left">
-                    <?php if ($modification): ?>
-                        <?= $modification->additional_name ?>
-                    <?php else: ?>
-                        <?= $product->additional_name ?>
-                    <?php endif; ?>
-                </td>
-                <td class="text-left">
-                    <?php if ($size): ?>
-                        <?= $size ?>
-                    <?php endif; ?>
-                </td>
-                <td class="text-left">
-                    <?= Html::beginForm(['quantity', 'id' => $item->getId()]) ?>
+                    </td>
+                    <td class="text-left">
+                        <?php if ($modification): ?>
+                            <?= $modification->additional_name ?>
+                        <?php else: ?>
+                            <?= $product->additional_name ?>
+                        <?php endif; ?>
+                    </td>
+                    <td class="text-left">
+                        <?php if ($size): ?>
+                            <?= $size ?>
+                        <?php endif; ?>
+                    </td>
+                    <td class="text-left">
+                        <?= Html::beginForm(['quantity', 'id' => $item->getId()]) ?>
                         <div class="input-group btn-block" style="max-width: 200px">
                             <label for="number" class="sr-only">Количество</label>
-                            <input type="number" id="number" name="quantity" value="<?= $item->getQuantity() ?>" size="1" step="1" min="1" class="form-control">
+                            <input type="number" id="number" name="quantity" value="<?= $item->getQuantity() ?>"
+                                   size="1" step="1" min="1" class="form-control">
                             <span class="input-group-btn">
                                 <button type="submit" class="btn btn-primary" data-original-title="Обновить">
                                     <i class="fa fa-refresh"></i>
                                 </button>
-                                <a href="<?= Url::to(['remove', 'id' => $item->getId()]) ?>" title="Удалить" data-method="post" class="btn btn-danger">
+                                <a href="<?= Url::to(['remove', 'id' => $item->getId()]) ?>" title="Удалить"
+                                   data-method="post" class="btn btn-danger">
                                     <i class="fa fa-times-circle"></i>
                                 </a>
                             </span>
                         </div>
-                    <?= Html::endForm() ?>
-                </td>
-                <td class="text-right">
-                    <strong><?= $item->getPrice() ?></strong> <i class="fa fa-rub"></i>
-                </td>
-                <td class="text-right">
-                    <strong><?= $item->getCost() ?></strong> <i class="fa fa-rub"></i>
-                </td>
-            </tr>
+                        <?= Html::endForm() ?>
+                    </td>
+                    <td class="text-right">
+                        <strong><?= $item->getPrice() ?></strong> <i class="fa fa-rub"></i>
+                    </td>
+                    <td class="text-right">
+                        <strong><?= $item->getCost() ?></strong> <i class="fa fa-rub"></i>
+                    </td>
+                </tr>
             <?php endforeach; ?>
             </tbody>
         </table>
