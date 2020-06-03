@@ -43,7 +43,7 @@ class CatalogController extends Controller
 
     public function actionCategory($slug)
     {
-        if (!$category = $this->categories->findBySlug($slug)){
+        if (!$category = $this->categories->findBySlug($slug)) {
             throw new NotFoundHttpException('Запрашиваемая страница не найдена.');
         }
         $dataProvider = $this->products->getAllByCategory($category);
@@ -55,7 +55,7 @@ class CatalogController extends Controller
 
     public function actionProduct($slug)
     {
-        if (!$product = $this->products->findBySlug($slug)){
+        if (!$product = $this->products->findBySlug($slug)) {
             throw new NotFoundHttpException('Запрашиваемая страница не найдена.');
         }
         $cartForm = new AddToCartForm($product);

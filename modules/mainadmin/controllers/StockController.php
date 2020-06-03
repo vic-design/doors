@@ -84,11 +84,11 @@ class StockController extends Controller
         $form = new StockForm();
 
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
-            try{
+            try {
                 $stock = $this->service->create($form);
                 Yii::$app->session->setFlash('success', 'Новая акция успешно создана.');
                 return $this->redirect(['view', 'id' => $stock->id]);
-            }catch (\DomainException $e){
+            } catch (\DomainException $e) {
                 Yii::$app->errorHandler->logException($e);
                 Yii::$app->session->setFlash('error', $e->getMessage());
             }
@@ -110,11 +110,11 @@ class StockController extends Controller
         $form = new StockForm($stock);
 
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
-            try{
+            try {
                 $this->service->edit($stock->id, $form);
                 Yii::$app->session->setFlash('success', 'Акция успешно отредактирована.');
                 return $this->redirect(['view', 'id' => $stock->id]);
-            }catch (\DomainException $e){
+            } catch (\DomainException $e) {
                 Yii::$app->errorHandler->logException($e);
                 Yii::$app->session->setFlash('error', $e->getMessage());
             }
@@ -132,9 +132,9 @@ class StockController extends Controller
      */
     public function actionDraft($id)
     {
-        try{
+        try {
             $this->service->draft($id);
-        }catch (\DomainException $e){
+        } catch (\DomainException $e) {
             Yii::$app->errorHandler->logException($e);
             Yii::$app->session->setFlash('error', $e->getMessage());
         }
@@ -148,9 +148,9 @@ class StockController extends Controller
      */
     public function actionActivate($id)
     {
-        try{
+        try {
             $this->service->activate($id);
-        }catch (\DomainException $e){
+        } catch (\DomainException $e) {
             Yii::$app->errorHandler->logException($e);
             Yii::$app->session->setFlash('error', $e->getMessage());
         }
@@ -165,9 +165,9 @@ class StockController extends Controller
      */
     public function actionDelete($id)
     {
-        try{
+        try {
             $this->service->remove($id);
-        }catch (\DomainException $e){
+        } catch (\DomainException $e) {
             Yii::$app->errorHandler->logException($e);
             Yii::$app->session->setFlash('error', $e->getMessage());
         }

@@ -84,11 +84,11 @@ class ArticleController extends Controller
         $form = new ArticleForm();
 
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
-            try{
+            try {
                 $article = $this->service->create($form);
                 Yii::$app->session->setFlash('success', 'Новая ствтья успешно создана.');
                 return $this->redirect(['view', 'id' => $article->id]);
-            }catch (\DomainException $e){
+            } catch (\DomainException $e) {
                 Yii::$app->errorHandler->logException($e);
                 Yii::$app->session->setFlash('error', $e->getMessage());
             }
@@ -110,11 +110,11 @@ class ArticleController extends Controller
         $form = new ArticleForm($article);
 
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
-            try{
+            try {
                 $this->service->edit($article->id, $form);
                 Yii::$app->session->setFlash('success', 'Статья успешно отредактирована.');
                 return $this->redirect(['view', 'id' => $article->id]);
-            }catch (\DomainException $e){
+            } catch (\DomainException $e) {
                 Yii::$app->errorHandler->logException($e);
                 Yii::$app->session->setFlash('error', $e->getMessage());
             }
@@ -132,9 +132,9 @@ class ArticleController extends Controller
      */
     public function actionDraft($id)
     {
-        try{
+        try {
             $this->service->draft($id);
-        }catch (\DomainException $e){
+        } catch (\DomainException $e) {
             Yii::$app->errorHandler->logException($e);
             Yii::$app->session->setFlash('error', $e->getMessage());
         }
@@ -148,9 +148,9 @@ class ArticleController extends Controller
      */
     public function actionActivate($id)
     {
-        try{
+        try {
             $this->service->activate($id);
-        }catch (\DomainException $e){
+        } catch (\DomainException $e) {
             Yii::$app->errorHandler->logException($e);
             Yii::$app->session->setFlash('error', $e->getMessage());
         }
@@ -165,9 +165,9 @@ class ArticleController extends Controller
      */
     public function actionDelete($id)
     {
-        try{
+        try {
             $this->service->remove($id);
-        }catch (\DomainException $e){
+        } catch (\DomainException $e) {
             Yii::$app->errorHandler->logException($e);
             Yii::$app->session->setFlash('error', $e->getMessage());
         }

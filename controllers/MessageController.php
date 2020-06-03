@@ -26,12 +26,12 @@ class MessageController extends Controller
     public function actionNode()
     {
         $form = new MessageForm();
-        if ($form->load(\Yii::$app->request->post()) && $form->validate()){
-            try{
+        if ($form->load(\Yii::$app->request->post()) && $form->validate()) {
+            try {
                 $this->service->create($form);
                 \Yii::$app->session->setFlash('success', 'Спасибо! Ваше сообщение отправлено. Вы получите ответ в ближайшее время.');
                 return $this->redirect(\Yii::$app->request->referrer);
-            }catch (\DomainException $e){
+            } catch (\DomainException $e) {
                 \Yii::$app->errorHandler->logException($e);
                 \Yii::$app->session->setFlash('error', $e->getMessage());
             }

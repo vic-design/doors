@@ -87,11 +87,11 @@ class OrderController extends Controller
         $form = new OrderEditForm($order);
 
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
-            try{
+            try {
                 $this->service->edit($order->id, $form);
                 Yii::$app->session->setFlash('success', 'Заказ отредактирован.');
                 return $this->redirect(['view', 'id' => $order->id]);
-            }catch (\DomainException $e){
+            } catch (\DomainException $e) {
                 Yii::$app->errorHandler->logException($e);
                 Yii::$app->session->setFlash('error', $e->getMessage());
             }
@@ -131,9 +131,9 @@ class OrderController extends Controller
      */
     public function actionDelete($id)
     {
-        try{
+        try {
             $this->service->remove($id);
-        }catch (\DomainException $e){
+        } catch (\DomainException $e) {
             Yii::$app->errorHandler->logException($e);
             Yii::$app->session->setFlash('error', $e->getMessage());
         }

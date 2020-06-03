@@ -85,11 +85,11 @@ class SizeController extends Controller
         $form = new SizeForm();
 
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
-            try{
+            try {
                 $size = $this->service->create($form);
                 Yii::$app->session->setFlash('success', 'Размер успешно создан.');
                 return $this->redirect(['view', 'id' => $size->id]);
-            }catch (\DomainException $e){
+            } catch (\DomainException $e) {
                 Yii::$app->errorHandler->logException($e);
                 Yii::$app->session->setFlash('error', $e->getMessage());
             }
@@ -111,11 +111,11 @@ class SizeController extends Controller
         $form = new SizeForm($size);
 
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
-            try{
+            try {
                 $this->service->edit($size->id, $form);
                 Yii::$app->session->setFlash('success', 'Размер успешно отредактирован.');
                 return $this->redirect(['view', 'id' => $size->id]);
-            }catch (\DomainException $e){
+            } catch (\DomainException $e) {
                 Yii::$app->errorHandler->logException($e);
                 Yii::$app->session->setFlash('error', $e->getMessage());
             }
@@ -134,9 +134,9 @@ class SizeController extends Controller
      */
     public function actionDelete($id)
     {
-        try{
+        try {
             $this->service->remove($id);
-        }catch (\DomainException $e){
+        } catch (\DomainException $e) {
             Yii::$app->errorHandler->logException($e);
             Yii::$app->session->setFlash('error', $e->getMessage());
         }

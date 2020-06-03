@@ -32,12 +32,12 @@ class CheckoutController extends Controller
     public function actionIndex()
     {
         $form = new OrderForm($this->cart->getCost()->getTotal());
-        if ($form->load(Yii::$app->request->post()) && $form->validate()){
-            try{
+        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+            try {
                 $this->service->checkout($form);
                 Yii::$app->session->setFlash('success', 'Спасибо! Ваш заказ принят. В ближайшее время с Вами свяжется менеджер для уточнения деталей оплаты, доставки и т.п.');
                 return $this->redirect(Url::home());
-            }catch (\DomainException $e){
+            } catch (\DomainException $e) {
                 Yii::$app->errorHandler->logException($e);
                 Yii::$app->session->setFlash('error', $e->getMessage());
             }

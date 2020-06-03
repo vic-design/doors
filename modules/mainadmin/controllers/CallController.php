@@ -74,9 +74,9 @@ class CallController extends Controller
 
     public function actionActivate($id)
     {
-        try{
+        try {
             $this->service->activate($id);
-        }catch (\DomainException $e){
+        } catch (\DomainException $e) {
             YIi::$app->errorHandler->logException($e);
             Yii::$app->session->setFlash('error', $e->getMessage());
         }
@@ -91,9 +91,9 @@ class CallController extends Controller
      */
     public function actionDelete($id)
     {
-        try{
+        try {
             $this->service->remove($id);
-        }catch (\DomainException $e){
+        } catch (\DomainException $e) {
             YIi::$app->errorHandler->logException($e);
             Yii::$app->session->setFlash('error', $e->getMessage());
         }

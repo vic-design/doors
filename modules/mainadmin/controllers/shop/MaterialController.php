@@ -85,11 +85,11 @@ class MaterialController extends Controller
         $form = new MaterialForm();
 
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
-            try{
+            try {
                 $material = $this->service->create($form);
                 Yii::$app->session->setFlash('success', 'Материал успешно создан.');
                 return $this->redirect(['view', 'id' => $material->id]);
-            }catch (\DomainException $e){
+            } catch (\DomainException $e) {
                 Yii::$app->errorHandler->logException($e);
                 Yii::$app->session->setFlash('error', $e->getMessage());
             }
@@ -111,11 +111,11 @@ class MaterialController extends Controller
         $form = new MaterialForm($material);
 
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
-            try{
+            try {
                 $this->service->edit($material->id, $form);
                 Yii::$app->session->setFlash('success', 'Материал успешно отредактирован.');
                 return $this->redirect(['view', 'id' => $material->id]);
-            }catch (\DomainException $e){
+            } catch (\DomainException $e) {
                 Yii::$app->errorHandler->logException($e);
                 Yii::$app->session->setFlash('error', $e->getMessage());
             }

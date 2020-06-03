@@ -24,9 +24,9 @@ class AppAsset extends AssetBundle
         'css/style.css',
     ];
     public $js = [
-            'js/jquery.fancybox.js',
-            'js/jquery.fancybox.pack.js',
-            'js/main.js',
+        'js/jquery.fancybox.js',
+        'js/jquery.fancybox.pack.js',
+        'js/main.js',
     ];
     public $depends = [
         'app\assets\FontAwesomeAsset',

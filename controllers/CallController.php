@@ -6,7 +6,6 @@ namespace app\controllers;
 use app\fond\forms\manage\CallForm;
 use app\fond\service\CallManageService;
 use yii\web\Controller;
-use app\modules\mainadmin\Module;
 
 class CallController extends Controller
 {
@@ -26,12 +25,12 @@ class CallController extends Controller
     public function actionNode()
     {
         $form = new CallForm();
-        if ($form->load(\Yii::$app->request->post()) && $form->validate()){
-            try{
+        if ($form->load(\Yii::$app->request->post()) && $form->validate()) {
+            try {
                 $this->service->create($form);
                 \Yii::$app->session->setFlash('success', 'Спасибо! Ваше сообщение отправлено. Наши менеджеры свяжутся с Вами в ближайшее время.');
                 return $this->redirect(\Yii::$app->request->referrer);
-            }catch (\DomainException $e){
+            } catch (\DomainException $e) {
                 \Yii::$app->errorHandler->logException($e);
                 \Yii::$app->session->setFlash('error', $e->getMessage());
             }

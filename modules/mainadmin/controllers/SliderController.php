@@ -22,10 +22,10 @@ class SliderController extends Controller
     private $service;
 
     public function __construct(
-            $id,
-            Module $module,
-            SlidersManageService $service,
-            array $config = []
+        $id,
+        Module $module,
+        SlidersManageService $service,
+        array $config = []
     )
     {
         parent::__construct($id, $module, $config);
@@ -75,11 +75,11 @@ class SliderController extends Controller
         $slider = $this->findModel($id);
         $slidesForm = new SlideForm();
 
-        if ($slidesForm->load(Yii::$app->request->post()) && $slidesForm->validate()){
-            try{
+        if ($slidesForm->load(Yii::$app->request->post()) && $slidesForm->validate()) {
+            try {
                 $this->service->addSlides($slider->id, $slidesForm);
                 return $this->redirect(['view', 'id' => $slider->id, '#' => 'slides']);
-            }catch (\DomainException $e){
+            } catch (\DomainException $e) {
                 Yii::$app->errorHandler->logException($e);
                 Yii::$app->session->setFlash('error', $e->getMessage());
             }
@@ -100,11 +100,11 @@ class SliderController extends Controller
         $form = new SliderCreateForm();
 
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
-            try{
+            try {
                 $slider = $this->service->create($form);
                 Yii::$app->session->setFlash('success', 'Слайдер успешно создан.');
                 return $this->redirect(['view', 'id' => $slider->id]);
-            }catch (\DomainException $e){
+            } catch (\DomainException $e) {
                 Yii::$app->errorHandler->logException($e);
                 Yii::$app->session->setFlash('error', $e->getMessage());
             }
@@ -126,11 +126,11 @@ class SliderController extends Controller
         $form = new SliderEditForm($slider);
 
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
-            try{
+            try {
                 $this->service->edit($slider->id, $form);
                 Yii::$app->session->setFlash('success', 'Слайдер успешно отредактирован.');
                 return $this->redirect(['view', 'id' => $slider->id]);
-            }catch (\DomainException $e){
+            } catch (\DomainException $e) {
                 Yii::$app->errorHandler->logException($e);
                 Yii::$app->session->setFlash('error', $e->getMessage());
             }
@@ -143,9 +143,9 @@ class SliderController extends Controller
 
     public function actionMoveSlideUp($id, $slideId)
     {
-        try{
+        try {
             $this->service->moveSlideUp($id, $slideId);
-        }catch (\DomainException $e){
+        } catch (\DomainException $e) {
             Yii::$app->errorHandler->logException($e);
             Yii::$app->session->setFlash('error', $e->getMessage());
         }
@@ -154,9 +154,9 @@ class SliderController extends Controller
 
     public function actionMoveSlideDown($id, $slideId)
     {
-        try{
+        try {
             $this->service->moveSlideDown($id, $slideId);
-        }catch (\DomainException $e){
+        } catch (\DomainException $e) {
             Yii::$app->errorHandler->logException($e);
             Yii::$app->session->setFlash('error', $e->getMessage());
         }
@@ -165,9 +165,9 @@ class SliderController extends Controller
 
     public function actionDeleteSlide($id, $slideId)
     {
-        try{
+        try {
             $this->service->removeSlide($id, $slideId);
-        }catch (\DomainException $e){
+        } catch (\DomainException $e) {
             Yii::$app->errorHandler->logException($e);
             Yii::$app->session->setFlash('error', $e->getMessage());
         }
@@ -182,9 +182,9 @@ class SliderController extends Controller
      */
     public function actionDelete($id)
     {
-        try{
+        try {
             $this->service->remove($id);
-        }catch (\DomainException $e){
+        } catch (\DomainException $e) {
             Yii::$app->errorHandler->logException($e);
             Yii::$app->session->setFlash('error', $e->getMessage());
         }

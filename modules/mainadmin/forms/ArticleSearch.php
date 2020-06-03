@@ -2,7 +2,6 @@
 
 namespace app\modules\mainadmin\forms;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\fond\entities\manage\Article;
@@ -15,6 +14,7 @@ class ArticleSearch extends Model
     public $id;
     public $status;
     public $name;
+
     /**
      * @inheritdoc
      */

@@ -82,11 +82,11 @@ class ColorController extends Controller
         $form = new ColorForm();
 
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
-            try{
+            try {
                 $color = $this->service->create($form);
                 Yii::$app->session->setFlash('success', 'Цвет успешно создан.');
                 return $this->redirect(['view', 'id' => $color->id]);
-            }catch (\DomainException $e){
+            } catch (\DomainException $e) {
                 Yii::$app->errorHandler->logException($e);
                 Yii::$app->session->setFlash('error', $e->getMessage());
             }
@@ -108,11 +108,11 @@ class ColorController extends Controller
         $form = new ColorForm($color);
 
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
-            try{
+            try {
                 $this->service->edit($color->id, $form);
                 Yii::$app->session->setFlash('success', 'Цвет успешно отредактирован.');
                 return $this->redirect(['view', 'id' => $color->id]);
-            }catch (\DomainException $e){
+            } catch (\DomainException $e) {
                 Yii::$app->errorHandler->logException($e);
                 Yii::$app->session->setFlash('error', $e->getMessage());
             }

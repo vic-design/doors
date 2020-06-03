@@ -82,18 +82,18 @@ class CategoryController extends Controller
         $form = new CategoryForm();
 
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
-            try{
+            try {
                 $category = $this->service->create($form);
                 Yii::$app->session->setFlash('success', 'Новая категория успешно создана.');
                 return $this->redirect(['view', 'id' => $category->id]);
-            }catch (\DomainException $e){
+            } catch (\DomainException $e) {
                 Yii::$app->errorHandler->logException($e);
                 Yii::$app->session->setFlash('error', $e->getMessage());
             }
         }
-            return $this->render('create', [
-                'model' => $form,
-            ]);
+        return $this->render('create', [
+            'model' => $form,
+        ]);
     }
 
     /**
@@ -108,11 +108,11 @@ class CategoryController extends Controller
         $form = new CategoryForm($category);
 
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
-            try{
+            try {
                 $this->service->edit($category->id, $form);
                 Yii::$app->session->setFlash('success', 'Категория успешно отредактирована.');
                 return $this->redirect(['view', 'id' => $category->id]);
-            }catch (\DomainException $e){
+            } catch (\DomainException $e) {
                 Yii::$app->errorHandler->logException($e);
                 Yii::$app->session->setFlash('error', $e->getMessage());
             }
@@ -143,9 +143,9 @@ class CategoryController extends Controller
      */
     public function actionDelete($id)
     {
-        try{
+        try {
             $this->service->remove($id);
-        }catch (\DomainException $e){
+        } catch (\DomainException $e) {
             Yii::$app->errorHandler->logException($e);
             Yii::$app->session->setFlash('error', $e->getMessage());
         }

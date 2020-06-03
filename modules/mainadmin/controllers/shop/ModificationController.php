@@ -58,11 +58,11 @@ class ModificationController extends Controller
     {
         $product = $this->findModel($productId);
         $form = new ModificationForm();
-        if ($form->load(Yii::$app->request->post()) && $form->validate()){
-            try{
+        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+            try {
                 $this->service->addModification($product->id, $form);
                 return $this->redirect(['shop/product/view', 'id' => $product->id, '#' => 'modifications']);
-            }catch (\DomainException $e){
+            } catch (\DomainException $e) {
                 Yii::$app->errorHandler->logException($e);
                 Yii::$app->session->setFlash('error', $e->getMessage());
             }
@@ -84,11 +84,11 @@ class ModificationController extends Controller
         $product = $this->findModel($productId);
         $modification = $product->getModification($id);
         $form = new ModificationForm($modification);
-        if ($form->load(Yii::$app->request->post()) && $form->validate()){
-            try{
+        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+            try {
                 $this->service->editModification($product->id, $modification->id, $form);
                 return $this->redirect(['shop/product/view', 'id' => $product->id, '#' => 'modifications']);
-            }catch (\DomainException $e){
+            } catch (\DomainException $e) {
                 Yii::$app->errorHandler->logException($e);
                 Yii::$app->session->setFlash('error', $e->getMessage());
             }
@@ -103,9 +103,9 @@ class ModificationController extends Controller
     public function actionDelete($productId, $id)
     {
         $product = $this->findModel($productId);
-        try{
+        try {
             $this->service->removeModification($product->id, $id);
-        }catch (\DomainException $e){
+        } catch (\DomainException $e) {
             Yii::$app->errorHandler->logException($e);
             Yii::$app->session->setFlash('error', $e->getMessage());
         }
@@ -119,7 +119,7 @@ class ModificationController extends Controller
      */
     private function findModel($id): Product
     {
-        if (($model = Product::findOne($id)) !== null){
+        if (($model = Product::findOne($id)) !== null) {
             return $model;
         }
         throw new NotFoundHttpException('Запрашиваемая страница не найдена.');

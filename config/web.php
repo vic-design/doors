@@ -14,7 +14,7 @@ $config = [
     ],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset',
+        '@npm' => '@vendor/npm-asset',
     ],
     'modules' => [
         'mainadmin' => [
@@ -28,15 +28,15 @@ $config = [
             'access' => ['@'], //глобальный доступ к фаил менеджеру @ - для авторизорованных , ? - для гостей , чтоб открыть всем ['@', '?']
             'roots' => [
                 [
-                    'baseUrl'=>'@web',
-                    'basePath'=>'@webroot',
+                    'baseUrl' => '@web',
+                    'basePath' => '@webroot',
                     'path' => 'files/editor',
                     'name' => 'Global'
                 ],
             ],
             'plugin' => [
                 [
-                    'class'=>'\mihaildev\elfinder\plugin\Sluggable',
+                    'class' => '\mihaildev\elfinder\plugin\Sluggable',
                     'lowercase' => true,
                     'replacement' => '-'
                 ]
@@ -63,7 +63,7 @@ $config = [
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             'useFileTransport' => FALSE,
-            'transport' =>[
+            'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.timeweb.ru',
                 'username' => 'info@abutan.tmweb.ru',
@@ -72,7 +72,7 @@ $config = [
                 'encryption' => 'ssl',
             ],
             'messageConfig' => [
-                    'from' => ['info@abutan.tmweb.ru' => 'РД Трейдинг'],
+                'from' => ['info@abutan.tmweb.ru' => 'РД Трейдинг'],
             ],
         ],
         'log' => [

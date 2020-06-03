@@ -63,21 +63,21 @@ class CartController extends Controller
      */
     public function actionAdd($id)
     {
-        if (!$product = $this->products->find($id)){
+        if (!$product = $this->products->find($id)) {
             throw new NotFoundHttpException('Запрашиваемая страница не найдена.');
         }
         $form = new AddToCartForm($product);
-        if ($form->load(Yii::$app->request->post()) && $form->validate()){
-            try{
-                $this->service->add($product->id, $form->modification ? : null, $form->size ?: null, $form->quantity);
+        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+            try {
+                $this->service->add($product->id, $form->modification ?: null, $form->size ?: null, $form->quantity);
                 return $this->redirect(Yii::$app->request->referrer);
-            }catch (\DomainException $e){
+            } catch (\DomainException $e) {
                 Yii::$app->errorHandler->logException($e);
                 Yii::$app->session->setFlash('error', $e->getMessage());
             }
         }
         return $this->renderAjax('add', [
-           'product' => $product,
+            'product' => $product,
             'model' => $form,
         ]);
     }
@@ -88,9 +88,9 @@ class CartController extends Controller
      */
     public function actionQuantity($id)
     {
-        try{
+        try {
             $this->service->set($id, (int)Yii::$app->request->post('quantity'));
-        }catch (\DomainException $e){
+        } catch (\DomainException $e) {
             Yii::$app->errorHandler->logException($e);
             Yii::$app->session->setFlash('error', $e->getMessage());
         }
@@ -99,9 +99,9 @@ class CartController extends Controller
 
     public function actionRemove($id)
     {
-        try{
+        try {
             $this->service->remove($id);
-        }catch (\DomainException $e){
+        } catch (\DomainException $e) {
             Yii::$app->errorHandler->logException($e);
             Yii::$app->session->setFlash('error', $e->getMessage());
         }
@@ -110,9 +110,9 @@ class CartController extends Controller
 
     public function actionClear()
     {
-        try{
+        try {
             $this->service->clear();
-        }catch (\DomainException $e){
+        } catch (\DomainException $e) {
             Yii::$app->errorHandler->logException($e);
             Yii::$app->session->setFlash('error', $e->getMessage());
         }
